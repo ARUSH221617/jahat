@@ -7,8 +7,8 @@ import { Calendar, Users, Target, Eye, Award, BookOpen, Globe, Lightbulb } from 
 const timelineEvents = [
   {
     year: "2001",
-    title: "KTTC Founded",
-    description: "Khuzestan Teacher Training Center was established with a vision to elevate educational standards in the region.",
+    title: "Jahat Founded",
+    description: "Jahat Educational Institute was established with a vision to build a comprehensive, self-sustaining, and elite-cultivating educational system.",
     icon: Calendar,
     color: "bg-blue-600"
   },
@@ -75,7 +75,7 @@ export default function AboutPage() {
     "@type": "AboutPage",
     "mainEntity": {
       "@type": "EducationalOrganization",
-      "name": "Khuzestan Teacher Training Center",
+      "name": "Jahat Educational Institute",
       "foundingDate": "2001",
       "employees": teamMembers.map(member => ({
         "@type": "Person",
@@ -102,11 +102,11 @@ export default function AboutPage() {
                 About Our Institution
               </Badge>
               <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                About Khuzestan Teacher Training Center
+                About Jahat Educational Institute
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                KTTC is a beacon of educational excellence in Khuzestan province,
-                dedicated to empowering educators and transforming lives through quality teacher education.
+                Jahat is a beacon of educational excellence,
+                dedicated to empowering students and transforming lives through quality training.
               </p>
             </div>
           </div>
@@ -125,9 +125,9 @@ export default function AboutPage() {
                 <div className="h-1 w-20 bg-yellow-400 rounded"></div>
               </div>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Founded in 2001, the Khuzestan Teacher Training Center (KTTC) emerged from a simple yet powerful vision: 
-                to create a world-class institution that would elevate the standards of education in our region. 
-                What began with just 50 students has now grown into a premier educational center serving over 1,200 teachers annually.
+                Founded with a clear vision, the Jahat Educational Institute emerged to build an elite learning environment: 
+                to create a world-class institution that would empower students and shape the future of talented youth. 
+                What began with a small group of students has now grown into a premier educational center serving over 1,200 participants annually.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
                 Over the past two decades, we have remained committed to our founding principles of excellence, 
@@ -154,7 +154,7 @@ export default function AboutPage() {
             <div>
               <img
                 src="/api/placeholder/600/400"
-                alt="KTTC Campus Building"
+                alt="Jahat Campus Building"
                 className="rounded-xl shadow-lg w-full"
               />
             </div>
@@ -170,13 +170,13 @@ export default function AboutPage() {
               Frequently Asked Questions
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Common questions about KTTC certifications and programs
+              Common questions about Jahat certifications and programs
             </p>
           </div>
           <div className="max-w-3xl mx-auto space-y-6">
             <div className="border rounded-lg p-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Is KTTC accredited?</h3>
-              <p className="text-gray-600">Yes, KTTC is a fully accredited teacher training institute recognized by the Ministry of Education in Iran.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Is Jahat accredited?</h3>
+              <p className="text-gray-600">Yes, Jahat is a fully accredited educational institute recognized by educational authorities.</p>
             </div>
             <div className="border rounded-lg p-6">
                <h3 className="text-xl font-bold text-gray-900 mb-2">What is the duration of courses?</h3>
@@ -340,7 +340,7 @@ export default function AboutPage() {
               Join Our Legacy of Excellence
             </h2>
             <p className="text-xl text-blue-100">
-              Become part of a community that's shaping the future of education in Khuzestan and beyond.
+              Become part of a community that's shaping the future of education and building real careers.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-yellow-400 hover:bg-yellow-300 text-blue-900 px-8 py-3 rounded-lg font-semibold transition-colors">

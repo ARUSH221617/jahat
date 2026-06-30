@@ -191,7 +191,7 @@ export default function ContactPage() {
                     <div>
                       <p className="font-medium text-gray-900">Address</p>
                       <p className="text-gray-600 text-sm">
-                        KTTC Building, Imam Khomeini Street<br />
+                        Jahat Educational Institute, Imam Khomeini Street<br />
                         Khorramshahr, Khuzestan<br />
                         Iran
                       </p>
@@ -211,8 +211,8 @@ export default function ContactPage() {
                     <Mail className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
                     <div>
                       <p className="font-medium text-gray-900">Email</p>
-                      <p className="text-gray-600 text-sm">info@kttcintl.com</p>
-                      <p className="text-gray-600 text-sm">support@kttcintl.com</p>
+                      <p className="text-gray-600 text-sm">info@jahatintl.com</p>
+                      <p className="text-gray-600 text-sm">support@jahatintl.com</p>
                     </div>
                   </div>
                   
@@ -311,7 +311,7 @@ export default function ContactPage() {
               Frequently Asked Questions
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Quick answers to common questions about KTTC
+              Quick answers to common questions about Jahat
             </p>
           </div>
           

@@ -58,12 +58,7 @@ export function Sidebar({ className, isCollapsed = false, toggleCollapse }: Side
       href: "/admin/blog",
       active: pathname.startsWith("/admin/blog"),
     },
-    {
-      label: "Certificates",
-      icon: Award,
-      href: "/admin/certificates",
-      active: pathname.startsWith("/admin/certificates"),
-    },
+
     {
       label: "Contacts",
       icon: Mail,
@@ -97,7 +92,7 @@ export function Sidebar({ className, isCollapsed = false, toggleCollapse }: Side
           <div className="flex items-center justify-between mb-2 px-2 h-9">
             {!isCollapsed && (
               <h2 className="text-lg font-semibold tracking-tight whitespace-nowrap overflow-hidden">
-                KTTC Admin
+                Jahat Admin
               </h2>
             )}
              {/* Only show toggle button if toggleCollapse is provided (Desktop) */}

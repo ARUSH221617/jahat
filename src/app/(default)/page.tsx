@@ -110,7 +110,7 @@ export default function HomePage() {
     "@type": "Review",
     "itemReviewed": {
       "@type": "Organization",
-      "name": "Khuzestan Teacher Training Center (KTTC)"
+      "name": "Jahat Educational Institute"
     },
     "reviewRating": {
       "@type": "Rating",
@@ -145,16 +145,16 @@ export default function HomePage() {
             >
               <div className="space-y-4">
                 <Badge className="bg-yellow-400 text-blue-900 hover:bg-yellow-300">
-                  Excellence in Teacher Training
+                  Elite Skill & Academy Training
                 </Badge>
                 <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                  Empowering Educators for
+                  Empowering Talents for
                   <span className="text-blue-600"> Tomorrow's World</span>
                 </h1>
                 <p className="text-xl text-gray-600 leading-relaxed">
-                  Khuzestan Teacher Training Center (KTTC) - Your gateway to
-                  professional excellence in education. Join over 1,200 teachers
-                  who have transformed their careers with our innovative
+                  Jahat Educational Institute - Your gateway to
+                  professional excellence and real-world career growth. Join over 1,200 participants
+                  who have transformed their career paths with our innovative
                   programs.
                 </p>
               </div>
@@ -175,7 +175,7 @@ export default function HomePage() {
                     className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3"
                   >
                     <ArrowRight className="mr-2 h-5 w-5" />
-                    Learn About KTTC
+                    Learn About Jahat
                   </Button>
                 </Link>
               </div>
@@ -190,7 +190,7 @@ export default function HomePage() {
                   src="/images/hero.png"
                   width={400}
                   height={400}
-                  alt="Teacher in classroom"
+                  alt="Students in classroom"
                   className="rounded-2xl shadow-2xl w-full z-0"
                 />
               </div>
@@ -208,7 +208,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* About KTTC Preview */}
+      {/* About Jahat Preview */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -216,22 +216,21 @@ export default function HomePage() {
               src="/images/about.png"
               width={400}
               height={400}
-              alt="KTTC Campus"
+              alt="Jahat Campus"
               className="rounded-xl shadow-lg w-full"
             />
             <div className="space-y-6">
               <div className="space-y-2">
                 <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
-                  About Khuzestan Teacher Training Center
+                  About Jahat Educational Institute
                 </h2>
                 <div className="h-1 w-20 bg-yellow-400 rounded"></div>
               </div>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Founded in 2001, KTTC has been at the forefront of teacher
-                education in Khuzestan province. Our mission is to equip
-                educators with modern teaching methodologies, psychological
-                insights, and management skills necessary for 21st-century
-                education.
+                Founded with the vision to build a self-sustaining and elite-cultivating system, 
+                Jahat is at the forefront of skill training. Our mission is to equip 
+                students with modern web design, programming, office skills, and 
+                konkur exam preparation.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
                 We combine traditional educational values with innovative
@@ -241,7 +240,7 @@ export default function HomePage() {
               </p>
               <Link href="/about">
                 <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-                  Read About KTTC History
+                  Read About Jahat History
                 </Button>
               </Link>
             </div>
@@ -369,7 +368,7 @@ export default function HomePage() {
               What Our Alumni Say
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Hear from teachers who have transformed their careers with KTTC
+              Hear from students who have transformed their careers with Jahat
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

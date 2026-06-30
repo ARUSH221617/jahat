@@ -205,7 +205,6 @@ export async function POST(request: Request) {
                 // Content
                 "createPost", "updatePost", "readPosts",
                 "createTestimonial", "readTestimonials",
-                "createCertificate", "readCertificates",
                 "readContacts",
                 // Settings
                 "readSettings", "updateSetting"
@@ -244,8 +243,6 @@ export async function POST(request: Request) {
             readPosts: contentTools.readPosts,
             createTestimonial: contentTools.createTestimonial,
             readTestimonials: contentTools.readTestimonials,
-            createCertificate: contentTools.createCertificate,
-            readCertificates: contentTools.readCertificates,
             readContacts: contentTools.readContacts,
             // Settings
             readSettings: settingsTools.readSettings,

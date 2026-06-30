@@ -15,7 +15,6 @@ model User {
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
   courses      Course[]
-  certificates Certificate[]
   chats        Chat[]
   documents    Document[]
   suggestions  Suggestion[]
@@ -37,21 +36,8 @@ model Course {
   updatedAt     DateTime @updatedAt
 
   instructor    User      @relation(fields: [instructorId], references: [id])
-  certificates  Certificate[]
 }
 
-model Certificate {
-  id            String   @id @default(cuid())
-  certificateNo String?  @unique
-  userId        String
-  courseId      String
-  status        String   @default("valid")
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-
-  user User   @relation(fields: [userId], references: [id])
-  course Course @relation(fields: [courseId], references: [id])
-}
 
 model Testimonial {
   id        String   @id @default(cuid())

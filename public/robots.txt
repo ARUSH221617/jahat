@@ -7,4 +7,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://kttcintl.com/sitemap.xml
+Sitemap: https://jahatintl.com/sitemap.xml

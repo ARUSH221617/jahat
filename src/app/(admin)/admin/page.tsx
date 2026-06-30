@@ -83,7 +83,7 @@ export default function AdminDashboard() {
     <div className="p-6">
       <div className="mb-8">
         <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-        <p className="text-gray-600">Manage your KTTC platform</p>
+        <p className="text-gray-600">Manage your Jahat platform</p>
       </div>
 
       {/* Stats Cards */}

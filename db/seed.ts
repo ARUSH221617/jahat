@@ -98,30 +98,6 @@ async function main() {
 
   console.log("Upserted courses count:", courses.length);
 
-  // Create users for certificates
-  const student1 = await upsertUser("fatemeh.alavi@example.com", "Fatemeh Alavi", "user");
-  const student2 = await upsertUser("reza.mohammadi@example.com", "Reza Mohammadi", "user");
-
-  // Create sample certificates
-  const upsertCertificate = async (certificateNo: string, userId: string, courseId: string, createdAt: Date) => {
-    return await db.certificate.upsert({
-      where: { certificateNo },
-      update: {},
-      create: {
-        certificateNo,
-        userId,
-        courseId,
-        createdAt,
-      },
-    });
-  };
-
-  const certificates = await Promise.all([
-    upsertCertificate("KTTC-2024-0001", student1.id, courses[0].id, new Date("2024-03-15")),
-    upsertCertificate("KTTC-2024-0002", student2.id, courses[4].id, new Date("2024-02-20")),
-  ]);
-
-  console.log("Upserted certificates count:", certificates.length);
 
   // Create sample testimonials
   // Check if testimonials exist, if not create
@@ -133,7 +109,7 @@ async function main() {
           name: "Fatemeh Alavi",
           role: "Primary School Teacher",
           content:
-            "KTTC transformed my teaching career. The modern methodologies I learned have made my classes more engaging and effective.",
+            "Jahat transformed my teaching career. The modern methodologies I learned have made my classes more engaging and effective.",
           avatar: "/api/placeholder/150/150",
         },
       }),
@@ -142,7 +118,7 @@ async function main() {
           name: "Reza Mohammadi",
           role: "High School Principal",
           content:
-            "The management courses at KTTC provided me with the skills needed to lead our school successfully. Highly recommended!",
+            "The management courses at Jahat provided me with the skills needed to lead our school successfully. Highly recommended!",
           avatar: "/api/placeholder/150/150",
         },
       }),

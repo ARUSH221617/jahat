@@ -11,7 +11,7 @@ import {
   UndoIcon,
 } from "@/components/agent/icons";
 import { Editor } from "@/components/agent/text-editor";
-import type { Suggestion } from "@/lib/db/schema";
+import type { Suggestion } from "@prisma/client";
 import { getSuggestions } from "../actions";
 
 type TextArtifactMetadata = {

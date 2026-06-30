@@ -62,32 +62,6 @@ export interface Contact {
   updatedAt: string;
 }
 
-/**
- * Represents a completion Certificate.
- */
-export interface Certificate {
-  /** Unique identifier for the certificate. */
-  id: string;
-  /** Unique certificate number. */
-  certificateNo: string;
-  /** Name of the certificate holder. */
-  holderName: string;
-  /** ID of the related course. */
-  courseId: string;
-  /** Optional nested course details. */
-  course?: {
-    title: string;
-    instructor: string;
-  };
-  /** Date the certificate was issued. */
-  issueDate: string;
-  /** Whether the certificate is valid. */
-  isValid: boolean;
-  /** ISO timestamp of creation. */
-  createdAt: string;
-  /** ISO timestamp of last update. */
-  updatedAt: string;
-}
 
 /**
  * Represents a Testimonial from a user.

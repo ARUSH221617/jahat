@@ -16,32 +16,33 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KTTC - Khuzestan Teacher Training Center",
+  title: "Jahat - Educational Institute",
   description:
-    "Official online platform for Khuzestan Teacher Training Center. Empowering educators with modern teaching skills and professional development programs.",
+    "Official online platform for Jahat Educational Institute. Empowering students and cultivating elite talents with practical skills and professional training.",
   keywords: [
-    "KTTC",
-    "Teacher Training",
-    "Education",
-    "Khuzestan",
-    "Professional Development",
-    "Teaching Skills",
+    "Jahat",
+    "Educational Institute",
+    "Elite Training",
+    "Programming",
+    "Web Design",
+    "Office Skills",
+    "Konkur Preparation",
   ],
-  authors: [{ name: "KTTC Team" }],
+  authors: [{ name: "Jahat Team" }],
   icons: {
     icon: "/logo.svg",
   },
   openGraph: {
-    title: "KTTC - Khuzestan Teacher Training Center",
+    title: "Jahat - Educational Institute",
     description:
-      "Empowering educators with modern teaching skills and professional development programs",
+      "Empowering students and cultivating elite talents with practical skills and professional training",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "KTTC - Khuzestan Teacher Training Center",
+    title: "Jahat - Educational Institute",
     description:
-      "Empowering educators with modern teaching skills and professional development programs",
+      "Empowering students and cultivating elite talents with practical skills and professional training",
   },
 };
 
@@ -51,7 +52,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="fa" dir="rtl" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground min-h-screen flex flex-col`}
       >

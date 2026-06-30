@@ -155,54 +155,6 @@ export const readTestimonials = tool({
     }
 });
 
-// Certificates
-export const createCertificate = tool({
-    description: "Issue a certificate to a user for a course.",
-    parameters: z.object({
-        userId: z.string(),
-        courseId: z.string(),
-        certificateNo: z.string().optional(),
-    }),
-    execute: async ({ userId, courseId, certificateNo }) => {
-        await checkAdmin();
-        // Generate a certificate number if not provided
-        const certNo = certificateNo || `CERT-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
-
-        try {
-            const cert = await db.certificate.create({
-                data: {
-                    userId,
-                    courseId,
-                    certificateNo: certNo,
-                    status: "valid",
-                }
-            });
-            return { success: true, certificate: cert };
-        } catch (e: any) {
-             return { error: `Failed to issue certificate: ${e.message}` };
-        }
-    }
-});
-
-export const readCertificates = tool({
-    description: "List certificates.",
-    parameters: z.object({
-        userId: z.string().optional(),
-        limit: z.number().default(10),
-    }),
-    execute: async ({ userId, limit }) => {
-        await checkAdmin();
-        const where: any = {};
-        if (userId) where.userId = userId;
-        const certificates = await db.certificate.findMany({
-            where,
-            take: limit,
-            include: { user: { select: { name: true, email: true } }, course: { select: { title: true } } },
-            orderBy: { createdAt: "desc" }
-        });
-        return { certificates };
-    }
-});
 
 // Contacts
 export const readContacts = tool({

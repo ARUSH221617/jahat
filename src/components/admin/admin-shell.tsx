@@ -40,7 +40,7 @@ export function AdminShell({ children }: AdminShellProps) {
       >
         <header className="md:hidden flex items-center h-16 border-b px-4 shrink-0 bg-background">
           <MobileNav />
-          <div className="ml-4 font-semibold">KTTC Admin</div>
+          <div className="ml-4 font-semibold">Jahat Admin</div>
         </header>
         <main className="flex-1 overflow-y-auto">
             {children}

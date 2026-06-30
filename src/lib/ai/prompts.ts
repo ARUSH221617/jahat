@@ -34,7 +34,7 @@ Do not update document right after creating it. Wait for user feedback or reques
 
 export const adminToolsPrompt = `
 **ADMIN TOOLS CAPABILITIES:**
-You have access to powerful administrative tools to manage the site content including Users, Courses, Posts, Testimonials, Certificates, Contacts, and Settings.
+You have access to powerful administrative tools to manage the site content including Users, Courses, Posts, Testimonials, Contacts, and Settings.
 These tools are available when the user has 'admin' privileges.
 
 **General Guidelines:**
@@ -62,9 +62,6 @@ These tools are available when the user has 'admin' privileges.
 - **Testimonials**:
   - \`readTestimonials\`: List testimonials.
   - \`createTestimonial\`: Create a new testimonial.
-- **Certificates**:
-  - \`readCertificates\`: List issued certificates. Supports filtering by userId.
-  - \`createCertificate\`: Issue a certificate to a user for a course.
 - **Contacts**:
   - \`readContacts\`: Read contact form submissions.
 - **Settings**:

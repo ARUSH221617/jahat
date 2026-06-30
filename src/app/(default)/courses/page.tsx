@@ -3,12 +3,12 @@ import CoursesList from "@/components/courses/courses-list";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "All Courses | KTTC",
-  description: "Browse our comprehensive collection of teacher training courses ranging from classroom management to educational psychology.",
-  keywords: ["KTTC Courses", "Teacher Training", "Professional Development", "Education Workshops", "Online Learning"],
+  title: "All Courses | Jahat",
+  description: "Browse our comprehensive collection of practical and skill training courses ranging from coding to digital design.",
+  keywords: ["Jahat Courses", "Elite Training", "Programming", "Office Skills", "Website Design", "Online Learning"],
   openGraph: {
-    title: "All Courses | KTTC",
-    description: "Explore professional development courses for educators.",
+    title: "All Courses | Jahat",
+    description: "Explore elite skill training courses.",
     type: "website",
   }
 };
@@ -53,8 +53,8 @@ export default async function CoursesPage() {
         "description": course.description,
         "provider": {
           "@type": "Organization",
-          "name": "KTTC",
-          "sameAs": "https://kttcintl.com"
+          "name": "Jahat",
+          "sameAs": "https://jahatintl.com"
         },
         "hasCourseInstance": {
           "@type": "CourseInstance",

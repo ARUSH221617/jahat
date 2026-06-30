@@ -16,41 +16,41 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://kttcintl.com'),
-  title: "KTTC - Khuzestan Teacher Training Center",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://jahat.ir'),
+  title: "Jahat - Educational Institute",
   description:
-    "Official online platform for Khuzestan Teacher Training Center. Empowering educators with modern teaching skills and professional development programs.",
+    "Official online platform for Jahat Educational Institute. Empowering students and cultivating elite talents with practical skills and professional training.",
   keywords: [
-    "KTTC",
-    "Teacher Training",
-    "Education",
-    "Khuzestan",
-    "Professional Development",
-    "Teaching Skills",
-    "Teacher Training in Khuzestan",
+    "Jahat",
+    "Educational Institute",
+    "Elite Training",
+    "Programming",
+    "Web Design",
+    "Office Skills",
+    "Konkur Preparation",
     "Education Certificate Iran",
     "Khorramshahr Educational Workshops"
   ],
   alternates: {
     canonical: '/',
   },
-  authors: [{ name: "KTTC Team" }],
+  authors: [{ name: "Jahat Team" }],
   icons: {
     icon: "/logo.svg",
   },
   openGraph: {
-    title: "KTTC - Khuzestan Teacher Training Center",
+    title: "Jahat - Educational Institute",
     description:
-      "Empowering educators with modern teaching skills and professional development programs",
+      "Empowering students and cultivating elite talents with practical skills and professional training",
     type: "website",
-    siteName: "KTTC",
+    siteName: "Jahat",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "KTTC - Khuzestan Teacher Training Center",
+    title: "Jahat - Educational Institute",
     description:
-      "Empowering educators with modern teaching skills and professional development programs",
+      "Empowering students and cultivating elite talents with practical skills and professional training",
   },
 };
 
@@ -62,10 +62,10 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
-    "name": "Khuzestan Teacher Training Center (KTTC)",
-    "url": "https://kttcintl.com",
-    "logo": "https://kttcintl.com/favicon.ico",
-    "description": "Official online platform for Khuzestan Teacher Training Center.",
+    "name": "Jahat Educational Institute",
+    "url": "https://jahatintl.com",
+    "logo": "https://jahatintl.com/favicon.ico",
+    "description": "Official online platform for Jahat Educational Institute.",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Khorramshahr",
@@ -73,14 +73,14 @@ export default function RootLayout({
       "addressCountry": "IR"
     },
     "sameAs": [
-      "https://facebook.com/kttc",
-      "https://twitter.com/kttc",
-      "https://instagram.com/kttc"
+      "https://facebook.com/jahat",
+      "https://twitter.com/jahat",
+      "https://instagram.com/jahat"
     ]
   };
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="fa" dir="rtl" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"

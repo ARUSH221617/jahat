@@ -67,7 +67,7 @@ export const requestSuggestions = ({
 
         dataStream.write({
           type: "data-suggestion",
-          data: suggestion,
+          data: suggestion as any,
           transient: true,
         });
 

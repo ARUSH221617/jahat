@@ -7,9 +7,9 @@ import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.kttcintl.com/"),
-  title: "KTTC Chatbot",
-  description: "KTTC chatbot powered by Gemini.",
+  metadataBase: new URL("https://www.jahatintl.com/"),
+  title: "Jahat Assistant",
+  description: "Jahat assistant powered by Gemini.",
 };
 
 export const viewport = {
@@ -60,7 +60,8 @@ export default function RootLayout({
       // visual flicker before hydration. Hence the `suppressHydrationWarning`
       // prop is necessary to avoid the React hydration mismatch warning.
       // https://github.com/pacocoursey/next-themes?tab=readme-ov-file#with-app
-      lang="en"
+      lang="fa"
+      dir="rtl"
       suppressHydrationWarning
     >
       <head>

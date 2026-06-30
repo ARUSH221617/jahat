@@ -42,7 +42,7 @@ export async function generateImage(prompt: string): Promise<string> {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${apiKey}`,
         "HTTP-Referer": process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000",
-        "X-Title": "KTTC Agent",
+        "X-Title": "Jahat Agent",
       },
       body: JSON.stringify({
         model: "google/gemini-2.5-flash-image", // Nano Banana
