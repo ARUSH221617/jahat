@@ -60,8 +60,8 @@ export default function RootLayout({
       // visual flicker before hydration. Hence the `suppressHydrationWarning`
       // prop is necessary to avoid the React hydration mismatch warning.
       // https://github.com/pacocoursey/next-themes?tab=readme-ov-file#with-app
-      lang="fa"
-      dir="rtl"
+      lang="en"
+      dir="ltr"
       suppressHydrationWarning
     >
       <head>
