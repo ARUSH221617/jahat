@@ -208,10 +208,10 @@ export default function AboutPage() {
                   <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-white border-4 border-blue-600 rounded-full z-10 hidden lg:block"></div>
                   
                   {/* Content */}
-                  <div className={`w-full lg:w-5/12 ${index % 2 === 0 ? 'lg:pr-12 lg:text-right' : 'lg:pl-12 lg:ml-auto'}`}>
+                  <div className={`w-full lg:w-5/12 ${index % 2 === 0 ? 'lg:pe-12 lg:text-end' : 'lg:ps-12 lg:text-start lg:ms-auto'}`}>
                     <Card className="hover:shadow-lg transition-shadow duration-300">
                       <CardContent className="p-6">
-                        <div className={`flex items-center space-x-3 mb-4 ${index % 2 === 0 ? 'lg:flex-row-reverse lg:space-x-reverse' : ''}`}>
+                        <div className={`flex items-center gap-3 mb-4 ${index % 2 === 0 ? 'lg:flex-row-reverse' : ''}`}>
                           <div className={`${event.color} text-white p-3 rounded-full`}>
                             <event.icon className="h-6 w-6" />
                           </div>

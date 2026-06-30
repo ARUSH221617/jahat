@@ -179,7 +179,7 @@ export default function HomePage() {
                     size="lg"
                     className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
                   >
-                    <BookOpen className="ml-2 h-5 w-5" />
+                    <BookOpen className="me-2 h-5 w-5" />
                     مشاهده دوره‌ها
                   </Button>
                 </Link>
@@ -189,7 +189,7 @@ export default function HomePage() {
                     variant="outline"
                     className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3"
                   >
-                    <ArrowRight className="ml-2 h-5 w-5" />
+                    <ArrowRight className="me-2 h-5 w-5 rtl:rotate-180" />
                     درباره جهت
                   </Button>
                 </Link>
@@ -209,7 +209,7 @@ export default function HomePage() {
                   className="rounded-2xl shadow-2xl w-full z-0"
                 />
               </div>
-              <div className="absolute -bottom-6 -left-6 z-10 bg-yellow-400 text-blue-900 p-4 rounded-xl shadow-lg">
+              <div className="absolute -bottom-6 -start-6 z-10 bg-yellow-400 text-blue-900 p-4 rounded-xl shadow-lg">
                 <div className="flex items-center space-x-2">
                   <Award className="h-8 w-8" />
                   <div>
@@ -445,7 +445,7 @@ export default function HomePage() {
                   size="lg"
                   className="bg-yellow-400 hover:bg-yellow-300 text-blue-900 px-8 py-3"
                 >
-                  <CheckCircle className="ml-2 h-5 w-5" />
+                  <CheckCircle className="me-2 h-5 w-5" />
                   ثبت‌نام کنید
                 </Button>
               </Link>

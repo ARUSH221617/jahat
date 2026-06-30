@@ -98,7 +98,7 @@ export default function CourseDetailsPage() {
         <h2 className="text-2xl font-bold text-red-600 mb-4">خطا در بارگذاری دوره</h2>
         <p className="text-gray-600 mb-6">{error || "دوره مورد نظر یافت نشد"}</p>
         <Button onClick={() => router.push('/courses')} variant="outline">
-          <ArrowLeft className="ml-2 h-4 w-4" />
+          <ArrowLeft className="me-2 h-4 w-4 rtl:rotate-180" />
           بازگشت به دوره‌ها
         </Button>
       </div>
@@ -112,10 +112,10 @@ export default function CourseDetailsPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <Button
             variant="ghost"
-            className="text-gray-300 hover:text-white hover:bg-white/10 mb-8 pr-0"
+            className="text-gray-300 hover:text-white hover:bg-white/10 mb-8 pe-0"
             onClick={() => router.push('/courses')}
           >
-            <ArrowLeft className="ml-2 h-4 w-4" />
+            <ArrowLeft className="me-2 h-4 w-4 rtl:rotate-180" />
             بازگشت به دوره‌ها
           </Button>
 
@@ -142,7 +142,7 @@ export default function CourseDetailsPage() {
                 <div className="flex items-center gap-2">
                   <div className="flex text-yellow-400">
                     <Star className="h-4 w-4 fill-current" />
-                    <span className="mr-1 font-medium text-white">{course.rating?.toFixed(1)}</span>
+                    <span className="ms-1 font-medium text-white">{course.rating?.toFixed(1)}</span>
                   </div>
                   <span>امتیاز</span>
                 </div>

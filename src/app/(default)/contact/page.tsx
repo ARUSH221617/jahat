@@ -167,7 +167,7 @@ export default function ContactPage() {
                         </div>
                       ) : (
                         <div className="flex items-center justify-center gap-2">
-                          <Send className="h-5 w-5" />
+                          <Send className="h-5 w-5 rtl:-scale-x-100" />
                           <span>ارسال پیام</span>
                         </div>
                       )}

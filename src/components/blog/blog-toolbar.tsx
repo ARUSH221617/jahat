@@ -78,11 +78,11 @@ export function BlogToolbar({ categories }: BlogToolbarProps) {
   return (
     <div className="flex flex-col sm:flex-row gap-4 items-center justify-between bg-card p-4 rounded-lg border shadow-sm">
       <div className="relative w-full sm:max-w-sm">
-        <Search className="absolute right-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+        <Search className="absolute start-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input
           type="search"
           placeholder="جستجوی مقالات..."
-          className="pr-8 pl-2.5 w-full"
+          className="ps-8 pe-2.5 w-full"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -95,7 +95,7 @@ export function BlogToolbar({ categories }: BlogToolbarProps) {
               <ListFilter className="h-4 w-4" />
               فیلتر
               {activeFiltersCount > 0 && (
-                <Badge variant="secondary" className="ml-1 h-5 w-5 rounded-full p-0 flex items-center justify-center">
+                <Badge variant="secondary" className="ms-1 h-5 w-5 rounded-full p-0 flex items-center justify-center">
                   {activeFiltersCount}
                 </Badge>
               )}
@@ -115,7 +115,7 @@ export function BlogToolbar({ categories }: BlogToolbarProps) {
                 >
                   {category.name}
                   {currentCategory === category.slug && (
-                    <span className="mr-auto flex h-2 w-2 rounded-full bg-primary" />
+                    <span className="ms-auto flex h-2 w-2 rounded-full bg-primary" />
                   )}
                 </Button>
               ))}

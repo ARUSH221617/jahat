@@ -95,7 +95,7 @@ const Navigation = () => {
             >
               <Link href="/login" className="flex items-center">
                 ورود و عضویت
-                <ArrowRightToLine className="h-4 w-4" />
+                <ArrowRightToLine className="h-4 w-4 ms-2 rtl:rotate-180" />
               </Link>
             </Button>
           </div>
@@ -108,7 +108,7 @@ const Navigation = () => {
                 <span className="sr-only">تغییر وضعیت منو</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-75 sm:w-100 px-4">
+            <SheetContent side="right" className="w-75 sm:w-100 px-4">
               <SheetHeader>
                 <SheetTitle>منو</SheetTitle>
               </SheetHeader>

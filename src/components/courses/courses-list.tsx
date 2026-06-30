@@ -199,20 +199,20 @@ export default function CoursesList({ initialCourses }: CoursesListProps) {
           <div className="space-y-6">
             <div className="flex flex-col md:flex-row gap-4 max-w-4xl mx-auto">
               <div className="relative flex-1">
-                <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Search className="absolute start-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <Input
                   type="text"
                   placeholder="جستجوی دوره‌ها بر اساس عنوان، مدرس یا کلمه کلیدی..."
                   value={searchTerm}
                   onChange={(e) => handleFilterChange(setSearchTerm, e.target.value)}
-                  className="pr-12 pl-4 w-full h-full py-3 text-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                  className="ps-12 pe-4 w-full h-full py-3 text-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                 />
               </div>
 
               <Dialog>
                 <DialogTrigger asChild>
                   <Button variant="outline" className="h-[52px] px-6 border-gray-300 text-gray-700 hover:bg-gray-50">
-                    <Filter className="h-5 w-5 ml-2" />
+                    <Filter className="h-5 w-5 me-2" />
                     فیلترها
                   </Button>
                 </DialogTrigger>
@@ -384,7 +384,7 @@ export default function CoursesList({ initialCourses }: CoursesListProps) {
                     <div className="flex gap-2">
                       <Button asChild className="flex-1 bg-blue-600 hover:bg-blue-700 text-white">
                         <Link href={`/courses/${course.id}`}>
-                          <BookOpen className="h-4 w-4 ml-2" />
+                          <BookOpen className="h-4 w-4 me-2" />
                           مشاهده جزئیات
                         </Link>
                       </Button>

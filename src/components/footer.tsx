@@ -95,7 +95,7 @@ const Footer = () => {
     <footer className="relative mt-16 md:mt-40" dir="rtl">
       {/* Quick Contact Form */}
       <div className="w-[calc(100%-2rem)] max-w-6xl mx-auto rounded-3xl p-6 md:p-8 bg-white shadow-2xl z-10 relative -mb-16 md:-mb-24 md:absolute md:-top-24 md:left-1/2 md:-translate-x-1/2 border border-gray-100">
-        <h2 className="font-bold text-2xl text-primary mb-4 text-center md:text-right">
+        <h2 className="font-bold text-2xl text-primary mb-4 text-center md:text-start">
           ارتباط سریع
         </h2>
         <form
@@ -156,19 +156,19 @@ const Footer = () => {
                 placeholder="من مى خواستم در مورد شيوه مطالعه ومسير..."
                 required
                 dir="rtl"
-                className="w-full overflow-hidden bg-cyan-50 placeholder:text-cyan-600/50 placeholder:text-center placeholder:text-sm text-shadow-primary-foreground border-0 focus:bg-cyan-100 focus:border-cyan-100 focus:ring-2 focus:ring-cyan-500/50 focus:outline-none transition-colors rounded-4xl py-3 pr-12 pl-28 resize-none min-h-12 h-12"
+                className="w-full overflow-hidden bg-cyan-50 placeholder:text-cyan-600/50 placeholder:text-center placeholder:text-sm text-shadow-primary-foreground border-0 focus:bg-cyan-100 focus:border-cyan-100 focus:ring-2 focus:ring-cyan-500/50 focus:outline-none transition-colors rounded-4xl py-3 ps-12 pe-28 resize-none min-h-12 h-12"
               />
               <Button
                 type="submit"
                 disabled={isSubmitting}
                 size={"sm"}
-                className="absolute left-3 top-1/2 -translate-y-1/2 bg-cyan-500 text-white hover:bg-cyan-500/90 transition-all active:scale-[0.98] flex items-center justify-center gap-1.5 px-3 font-semibold drop-shadow-xl drop-shadow-cyan-200 rounded-2xl"
+                className="absolute end-3 top-1/2 -translate-y-1/2 bg-cyan-500 text-white hover:bg-cyan-500/90 transition-all active:scale-[0.98] flex items-center justify-center gap-1.5 px-3 font-semibold drop-shadow-xl drop-shadow-cyan-200 rounded-2xl"
               >
                 {isSubmitting ? (
                   <Loader2 className="h-3.5 w-3.5 animate-spin" />
                 ) : (
                   <>
-                    <ArrowRight className="h-3.5 w-3.5" />
+                    <ArrowRight className="h-3.5 w-3.5 rtl:rotate-180" />
                     <span>بفرست</span>
                   </>
                 )}

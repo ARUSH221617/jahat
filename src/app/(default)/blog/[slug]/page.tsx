@@ -87,9 +87,9 @@ export default async function BlogPostPage({ params }: PageProps) {
 
       <BlogBreadcrumb items={[{ label: "وبلاگ", href: "/blog" }, { label: post.title }]} />
 
-      <Button variant="ghost" size="sm" asChild className="-mr-4 text-muted-foreground">
+      <Button variant="ghost" size="sm" asChild className="-me-4 text-muted-foreground">
         <Link href="/blog">
-          <ArrowLeft className="ml-2 h-4 w-4" />
+          <ArrowLeft className="me-2 h-4 w-4 rtl:rotate-180" />
           بازگشت به وبلاگ
         </Link>
       </Button>
