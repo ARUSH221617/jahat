@@ -23,11 +23,29 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 
+const categoryMap: { [key: string]: string } = {
+  "Teaching Skills": "مهارت‌های تدریس",
+  "Psychology": "روانشناسی",
+  "Management": "مدیریت",
+  "Technology": "فناوری",
+  "Curriculum": "برنامه درسی",
+  "Special Education": "آموزش استثنایی",
+  "Assessment": "ارزشیابی",
+  "Leadership": "رهبری",
+  "Early Education": "آموزش ابتدایی"
+};
+
+const levelMap: { [key: string]: string } = {
+  "Beginner": "مبتدی",
+  "Intermediate": "متوسط",
+  "Advanced": "پیشرفته"
+};
+
 const statistics = [
-  { icon: GraduationCap, value: "1,200+", label: "Trained Teachers" },
-  { icon: BookOpen, value: "50+", label: "Educational Programs" },
-  { icon: Award, value: "20+", label: "Years of Excellence" },
-  { icon: Users, value: "98%", label: "Satisfaction Rate" },
+  { icon: GraduationCap, value: "۱,۲۰۰+", label: "مدرسین تربیت‌شده" },
+  { icon: BookOpen, value: "۵۰+", label: "برنامه‌های آموزشی" },
+  { icon: Award, value: "۲۰+", label: "سال‌های درخشش" },
+  { icon: Users, value: "۹۸٪", label: "میزان رضایت" },
 ];
 
 export default function HomePage() {
@@ -110,7 +128,7 @@ export default function HomePage() {
     "@type": "Review",
     "itemReviewed": {
       "@type": "Organization",
-      "name": "Jahat Educational Institute"
+      "name": "مؤسسه آموزشی جهت"
     },
     "reviewRating": {
       "@type": "Rating",
@@ -145,17 +163,14 @@ export default function HomePage() {
             >
               <div className="space-y-4">
                 <Badge className="bg-yellow-400 text-blue-900 hover:bg-yellow-300">
-                  Elite Skill & Academy Training
+                  آموزش مهارت‌های نوین و آکادمیک
                 </Badge>
                 <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                  Empowering Talents for
-                  <span className="text-blue-600"> Tomorrow's World</span>
+                  توانمندسازی استعدادها برای
+                  <span className="text-blue-600"> دنیای فردا</span>
                 </h1>
                 <p className="text-xl text-gray-600 leading-relaxed">
-                  Jahat Educational Institute - Your gateway to
-                  professional excellence and real-world career growth. Join over 1,200 participants
-                  who have transformed their career paths with our innovative
-                  programs.
+                  مؤسسه آموزشی جهت - دروازه شما به سوی تعالی حرفه‌ای و رشد شغلی در دنیای واقعی. به بیش از ۱,۲۰۰ شرکت‌کننده‌ای بپیوندید که مسیر شغلی خود را با برنامه‌های نوآورانه ما متحول کرده‌اند.
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -164,8 +179,8 @@ export default function HomePage() {
                     size="lg"
                     className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
                   >
-                    <BookOpen className="mr-2 h-5 w-5" />
-                    Explore Courses
+                    <BookOpen className="ml-2 h-5 w-5" />
+                    مشاهده دوره‌ها
                   </Button>
                 </Link>
                 <Link href="/about">
@@ -174,8 +189,8 @@ export default function HomePage() {
                     variant="outline"
                     className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3"
                   >
-                    <ArrowRight className="mr-2 h-5 w-5" />
-                    Learn About Jahat
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                    درباره جهت
                   </Button>
                 </Link>
               </div>
@@ -190,7 +205,7 @@ export default function HomePage() {
                   src="/images/hero.png"
                   width={400}
                   height={400}
-                  alt="Students in classroom"
+                  alt="دانشجویان در کلاس درس"
                   className="rounded-2xl shadow-2xl w-full z-0"
                 />
               </div>
@@ -198,8 +213,8 @@ export default function HomePage() {
                 <div className="flex items-center space-x-2">
                   <Award className="h-8 w-8" />
                   <div>
-                    <p className="font-bold text-lg">20+ Years</p>
-                    <p className="text-sm">of Excellence</p>
+                    <p className="font-bold text-lg">۲۰+ سال</p>
+                    <p className="text-sm">سابقه درخشان</p>
                   </div>
                 </div>
               </div>
@@ -216,31 +231,25 @@ export default function HomePage() {
               src="/images/about.png"
               width={400}
               height={400}
-              alt="Jahat Campus"
+              alt="پردیس جهت"
               className="rounded-xl shadow-lg w-full"
             />
             <div className="space-y-6">
               <div className="space-y-2">
                 <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
-                  About Jahat Educational Institute
+                  درباره مؤسسه آموزشی جهت
                 </h2>
                 <div className="h-1 w-20 bg-yellow-400 rounded"></div>
               </div>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Founded with the vision to build a self-sustaining and elite-cultivating system, 
-                Jahat is at the forefront of skill training. Our mission is to equip 
-                students with modern web design, programming, office skills, and 
-                konkur exam preparation.
+                مجموعه جهت با چشم‌انداز ایجاد یک سیستم خودکفا و نخبه‌پرور، در خط مقدم آموزش مهارت‌ها قرار دارد. ماموریت ما تجهیز دانش‌آموزان به مهارت‌های مدرن طراحی وب، برنامه‌نویسی، مهارت‌های اداری و آمادگی آزمون کنکور است.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
-                We combine traditional educational values with innovative
-                teaching technologies to create transformative learning
-                experiences that empower teachers to inspire the next
-                generation.
+                ما ارزش‌های آموزشی سنتی را با فناوری‌های نوآورانه تدریس ترکیب می‌کنیم تا تجربه‌های یادگیری تحول‌آفرینی ایجاد کنیم که به مدرسان برای الهام‌بخشی به نسل بعدی توانایی ببخشد.
               </p>
               <Link href="/about">
                 <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-                  Read About Jahat History
+                  مطالعه درباره تاریخچه جهت
                 </Button>
               </Link>
             </div>
@@ -253,11 +262,10 @@ export default function HomePage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
-              Featured Courses
+              دوره‌های ویژه
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Discover our most popular programs designed to enhance your
-              teaching career
+              محبوب‌ترین برنامه‌های ما را که برای ارتقای مهارت‌های شما طراحی شده‌اند، کشف کنید
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -294,8 +302,8 @@ export default function HomePage() {
                     </CardHeader>
                     <CardContent className="p-6 space-y-4">
                       <div className="flex items-center justify-between">
-                        <Badge variant="secondary">{course.category}</Badge>
-                        <Badge variant="outline">{course.level}</Badge>
+                        <Badge variant="secondary">{categoryMap[course.category] || course.category}</Badge>
+                        <Badge variant="outline">{levelMap[course.level] || course.level}</Badge>
                       </div>
                       <CardTitle className="text-xl text-gray-900">
                         {course.title}
@@ -309,7 +317,7 @@ export default function HomePage() {
                       </div>
                       <Link href={`/courses/${course.id}`}>
                         <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-                          View Course
+                          مشاهده دوره
                         </Button>
                       </Link>
                     </CardContent>
@@ -323,7 +331,7 @@ export default function HomePage() {
                 variant="outline"
                 className="border-blue-600 text-blue-600 hover:bg-blue-50"
               >
-                View Teaching Courses
+                مشاهده تمام دوره‌ها
               </Button>
             </Link>
           </div>
@@ -335,11 +343,10 @@ export default function HomePage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold">
-              Our Impact in Numbers
+              تاثیر ما در قالب اعداد
             </h2>
             <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-              Two decades of excellence in teacher education and professional
-              development
+              دو دهه درخشش در آموزش و توسعه حرفه‌ای مهارت‌ها
             </p>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
@@ -365,10 +372,10 @@ export default function HomePage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
-              What Our Alumni Say
+              نظرات دانش‌آموختگان ما
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Hear from students who have transformed their careers with Jahat
+              از زبان دانشجویانی بشنوید که مسیر شغلی خود را با جهت متحول کرده‌اند
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -427,11 +434,10 @@ export default function HomePage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto space-y-8">
             <h2 className="text-3xl lg:text-4xl font-bold">
-              Ready to Transform Your Teaching Career?
+              برای متحول کردن آینده شغلی خود آماده‌اید؟
             </h2>
             <p className="text-xl text-blue-100">
-              Join thousands of educators who have already taken the next step
-              in their professional development.
+              به هزاران دانش‌آموز و کارآموزی بپیوندید که پیش از این گام بعدی را در توسعه حرفه‌ای خود برداشته‌اند.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/courses">
@@ -439,17 +445,17 @@ export default function HomePage() {
                   size="lg"
                   className="bg-yellow-400 hover:bg-yellow-300 text-blue-900 px-8 py-3"
                 >
-                  <CheckCircle className="mr-2 h-5 w-5" />
-                  Enroll Now
+                  <CheckCircle className="ml-2 h-5 w-5" />
+                  ثبت‌نام کنید
                 </Button>
               </Link>
               <Link href="/contact">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white text-black hover:bg-white hover:text-blue-600 px-8 py-3"
+                  className="border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3"
                 >
-                  Contact Us
+                  تماس با ما
                 </Button>
               </Link>
             </div>

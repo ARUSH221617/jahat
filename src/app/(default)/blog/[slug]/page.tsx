@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   });
 
   if (!post) {
-    return { title: "Post Not Found" };
+    return { title: "مطلب یافت نشد" };
   }
 
   return {
@@ -85,12 +85,12 @@ export default async function BlogPostPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <BlogBreadcrumb items={[{ label: "Blog", href: "/blog" }, { label: post.title }]} />
+      <BlogBreadcrumb items={[{ label: "وبلاگ", href: "/blog" }, { label: post.title }]} />
 
-      <Button variant="ghost" size="sm" asChild className="-ml-4 text-muted-foreground">
+      <Button variant="ghost" size="sm" asChild className="-mr-4 text-muted-foreground">
         <Link href="/blog">
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Blog
+          <ArrowLeft className="ml-2 h-4 w-4" />
+          بازگشت به وبلاگ
         </Link>
       </Button>
 
@@ -118,7 +118,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       {post.excerpt && (
         <section className="bg-muted/50 p-6 rounded-lg border border-primary/20">
             <h2 className="text-lg font-semibold mb-2 flex items-center gap-2">
-                💡 Key Takeaways
+                💡 نکات کلیدی
             </h2>
             <p className="text-lg leading-relaxed text-muted-foreground">
                 {post.excerpt}
@@ -139,7 +139,7 @@ export default async function BlogPostPage({ params }: PageProps) {
 
       {post.tags.length > 0 && (
          <div className="pt-8 border-t mt-8">
-            <h3 className="text-sm font-medium text-muted-foreground mb-3">Tags</h3>
+            <h3 className="text-sm font-medium text-muted-foreground mb-3">برچسب‌ها</h3>
             <div className="flex flex-wrap gap-2">
                 {post.tags.map(tag => (
                     <Badge key={tag.id} variant="outline">#{tag.name}</Badge>

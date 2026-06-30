@@ -19,6 +19,33 @@ import {
 import { Search, Clock, Users, BookOpen, Star, Filter, ChevronDown } from "lucide-react";
 import Link from "next/link";
 
+const categoryTranslations: { [key: string]: string } = {
+  "All": "همه",
+  "Teaching Skills": "مهارت‌های تدریس",
+  "Psychology": "روانشناسی",
+  "Management": "مدیریت",
+  "Technology": "فناوری",
+  "Curriculum": "برنامه درسی",
+  "Special Education": "آموزش استثنایی",
+  "Assessment": "ارزشیابی",
+  "Leadership": "رهبری",
+  "Early Education": "آموزش ابتدایی"
+};
+
+const levelTranslations: { [key: string]: string } = {
+  "All": "همه",
+  "Beginner": "مبتدی",
+  "Intermediate": "متوسط",
+  "Advanced": "پیشرفته"
+};
+
+const durationTranslations: { [key: string]: string } = {
+  "All": "همه",
+  "Short (1-4 weeks)": "کوتاه (۱-۴ هفته)",
+  "Medium (5-8 weeks)": "متوسط (۵-۸ هفته)",
+  "Long (9+ weeks)": "طولانی (۹+ هفته)"
+};
+
 const categories = ["All", "Teaching Skills", "Psychology", "Management", "Technology", "Curriculum", "Special Education", "Assessment", "Leadership", "Early Education"];
 const levels = ["All", "Beginner", "Intermediate", "Advanced"];
 const durations = ["All", "Short (1-4 weeks)", "Medium (5-8 weeks)", "Long (9+ weeks)"];
@@ -156,10 +183,10 @@ export default function CoursesList({ initialCourses }: CoursesListProps) {
           <div className="text-center space-y-8">
             <div className={`space-y-4 ${isLoaded ? 'animate-fade-in' : 'opacity-0'}`}>
               <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Explore Our Courses
+                دوره‌های آموزشی جهت
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Discover comprehensive programs designed to enhance your teaching skills and advance your educational career.
+                برنامه‌های مهارتی جامعی را که برای ارتقای توانایی‌های شما و ورود به بازار کار طراحی شده‌اند، کاوش کنید.
               </p>
             </div>
           </div>
@@ -172,42 +199,42 @@ export default function CoursesList({ initialCourses }: CoursesListProps) {
           <div className="space-y-6">
             <div className="flex flex-col md:flex-row gap-4 max-w-4xl mx-auto">
               <div className="relative flex-1">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <Input
                   type="text"
-                  placeholder="Search courses by title, instructor, or keyword..."
+                  placeholder="جستجوی دوره‌ها بر اساس عنوان، مدرس یا کلمه کلیدی..."
                   value={searchTerm}
                   onChange={(e) => handleFilterChange(setSearchTerm, e.target.value)}
-                  className="pl-12 w-full h-full pr-4 py-3 text-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                  className="pr-12 pl-4 w-full h-full py-3 text-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                 />
               </div>
 
               <Dialog>
                 <DialogTrigger asChild>
                   <Button variant="outline" className="h-[52px] px-6 border-gray-300 text-gray-700 hover:bg-gray-50">
-                    <Filter className="h-5 w-5 mr-2" />
-                    Filters
+                    <Filter className="h-5 w-5 ml-2" />
+                    فیلترها
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[425px]">
                   <DialogHeader>
-                    <DialogTitle>Filter Courses</DialogTitle>
+                    <DialogTitle>فیلتر دوره‌ها</DialogTitle>
                     <DialogDescription>
-                      Narrow down the course list with the following options.
+                      با استفاده از گزینه‌های زیر لیست دوره‌ها را محدود کنید.
                     </DialogDescription>
                   </DialogHeader>
                   <div className="grid gap-4 py-4">
                     <div className="space-y-2">
                       <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                        Category
+                        دسته‌بندی
                       </label>
                       <Select value={selectedCategory} onValueChange={(val) => handleFilterChange(setSelectedCategory, val)}>
                         <SelectTrigger className="border-gray-300">
-                          <SelectValue placeholder="Category" />
+                          <SelectValue placeholder="دسته‌بندی" />
                         </SelectTrigger>
                         <SelectContent>
                           {categories.map(category => (
-                            <SelectItem key={category} value={category}>{category}</SelectItem>
+                            <SelectItem key={category} value={category}>{categoryTranslations[category] || category}</SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
@@ -215,15 +242,15 @@ export default function CoursesList({ initialCourses }: CoursesListProps) {
 
                     <div className="space-y-2">
                       <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                        Level
+                        سطح دوره
                       </label>
                       <Select value={selectedLevel} onValueChange={(val) => handleFilterChange(setSelectedLevel, val)}>
                         <SelectTrigger className="border-gray-300">
-                          <SelectValue placeholder="Level" />
+                          <SelectValue placeholder="سطح دوره" />
                         </SelectTrigger>
                         <SelectContent>
                           {levels.map(level => (
-                            <SelectItem key={level} value={level}>{level}</SelectItem>
+                            <SelectItem key={level} value={level}>{levelTranslations[level] || level}</SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
@@ -231,15 +258,15 @@ export default function CoursesList({ initialCourses }: CoursesListProps) {
 
                     <div className="space-y-2">
                       <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                        Duration
+                        مدت زمان
                       </label>
                       <Select value={selectedDuration} onValueChange={(val) => handleFilterChange(setSelectedDuration, val)}>
                         <SelectTrigger className="border-gray-300">
-                          <SelectValue placeholder="Duration" />
+                          <SelectValue placeholder="مدت زمان" />
                         </SelectTrigger>
                         <SelectContent>
                           {durations.map(duration => (
-                            <SelectItem key={duration} value={duration}>{duration}</SelectItem>
+                            <SelectItem key={duration} value={duration}>{durationTranslations[duration] || duration}</SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
@@ -247,17 +274,17 @@ export default function CoursesList({ initialCourses }: CoursesListProps) {
 
                     <div className="space-y-2">
                       <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                        Sort By
+                        مرتب‌سازی بر اساس
                       </label>
                       <Select value={sortBy} onValueChange={(val) => handleFilterChange(setSortBy, val)}>
                         <SelectTrigger className="border-gray-300">
-                          <SelectValue placeholder="Sort by" />
+                          <SelectValue placeholder="مرتب‌سازی" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="popular">Most Popular</SelectItem>
-                          <SelectItem value="rating">Highest Rated</SelectItem>
-                          <SelectItem value="price-low">Price: Low to High</SelectItem>
-                          <SelectItem value="price-high">Price: High to Low</SelectItem>
+                          <SelectItem value="popular">محبوب‌ترین‌ها</SelectItem>
+                          <SelectItem value="rating">بیشترین امتیاز</SelectItem>
+                          <SelectItem value="price-low">قیمت: کم به زیاد</SelectItem>
+                          <SelectItem value="price-high">قیمت: زیاد به کم</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -268,10 +295,10 @@ export default function CoursesList({ initialCourses }: CoursesListProps) {
                       onClick={clearFilters}
                       className="w-full sm:w-auto"
                     >
-                      Clear Filters
+                      پاک کردن فیلترها
                     </Button>
                     <DialogClose asChild>
-                      <Button className="w-full sm:w-auto">Show Results</Button>
+                      <Button className="w-full sm:w-auto">مشاهده نتایج</Button>
                     </DialogClose>
                   </DialogFooter>
                 </DialogContent>
@@ -280,7 +307,7 @@ export default function CoursesList({ initialCourses }: CoursesListProps) {
 
             <div className="text-center">
               <p className="text-gray-600">
-                Showing <span className="font-semibold text-gray-900">{visibleCourses.length}</span> of <span className="font-semibold text-gray-900">{filteredCount}</span> courses
+                نمایش <span className="font-semibold text-gray-900">{visibleCourses.length}</span> از <span className="font-semibold text-gray-900">{filteredCount}</span> دوره
               </p>
             </div>
           </div>
@@ -308,12 +335,12 @@ export default function CoursesList({ initialCourses }: CoursesListProps) {
                     )}
                     <div className="absolute top-4 left-4">
                       <Badge variant="secondary" className="bg-white/90 text-gray-900 hover:bg-white">
-                        {course.category}
+                        {categoryTranslations[course.category] || course.category}
                       </Badge>
                     </div>
                     <div className="absolute top-4 right-4">
                       <Badge variant="outline" className="bg-white/90 border-gray-300 text-gray-700">
-                        {course.level}
+                        {levelTranslations[course.level] || course.level}
                       </Badge>
                     </div>
                   </div>
@@ -331,34 +358,34 @@ export default function CoursesList({ initialCourses }: CoursesListProps) {
 
                   <CardContent className="space-y-4">
                     <div className="flex items-center justify-between text-sm text-gray-500">
-                      <span className="font-medium">{course.instructor?.name || 'Instructor'}</span>
-                      <div className="flex items-center space-x-1">
+                      <span className="font-medium">{course.instructor?.name || 'مدرس'}</span>
+                      <div className="flex items-center gap-1">
                         <Clock className="h-4 w-4" />
                         <span>{course.duration}</span>
                       </div>
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-4">
-                        <div className="flex items-center space-x-1">
+                      <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-1">
                           <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                           <span className="text-sm font-medium text-gray-900">{course.rating?.toFixed(1)}</span>
                         </div>
-                        <div className="flex items-center space-x-1">
+                        <div className="flex items-center gap-1">
                           <Users className="h-4 w-4 text-gray-400" />
-                          <span className="text-sm text-gray-500">{course.students}</span>
+                          <span className="text-sm text-gray-500">{course.students} دانشجو</span>
                         </div>
                       </div>
                       <div className="text-lg font-bold text-blue-600">
-                        {course.price}
+                        {course.price.replace('$', '')} دلار
                       </div>
                     </div>
 
-                    <div className="flex space-x-2">
+                    <div className="flex gap-2">
                       <Button asChild className="flex-1 bg-blue-600 hover:bg-blue-700 text-white">
                         <Link href={`/courses/${course.id}`}>
-                          <BookOpen className="h-4 w-4 mr-2" />
-                          View Details
+                          <BookOpen className="h-4 w-4 ml-2" />
+                          مشاهده جزئیات
                         </Link>
                       </Button>
                       <Button disabled variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed">
@@ -372,10 +399,10 @@ export default function CoursesList({ initialCourses }: CoursesListProps) {
           ) : (
             <div className="text-center py-16">
               <BookOpen className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">No courses found</h3>
-              <p className="text-gray-600 mb-6">Try adjusting your filters or search terms</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">دوره‌ای یافت نشد</h3>
+              <p className="text-gray-600 mb-6">لطفاً فیلترها یا عبارت جستجوی خود را تغییر دهید</p>
               <Button onClick={clearFilters} className="bg-blue-600 hover:bg-blue-700 text-white">
-                Clear All Filters
+                پاک کردن همه فیلترها
               </Button>
             </div>
           )}
@@ -391,7 +418,7 @@ export default function CoursesList({ initialCourses }: CoursesListProps) {
               variant="outline"
               className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3"
             >
-              Load More Courses
+              دوره‌های بیشتر
             </Button>
           </div>
         </section>

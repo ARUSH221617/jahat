@@ -22,6 +22,24 @@ interface Course {
   students?: number;
 }
 
+const categoryMap: { [key: string]: string } = {
+  "Teaching Skills": "مهارت‌های تدریس",
+  "Psychology": "روانشناسی",
+  "Management": "مدیریت",
+  "Technology": "فناوری",
+  "Curriculum": "برنامه درسی",
+  "Special Education": "آموزش استثنایی",
+  "Assessment": "ارزشیابی",
+  "Leadership": "رهبری",
+  "Early Education": "آموزش ابتدایی"
+};
+
+const levelMap: { [key: string]: string } = {
+  "Beginner": "مبتدی",
+  "Intermediate": "متوسط",
+  "Advanced": "پیشرفته"
+};
+
 export default function CourseDetailsPage() {
   const { id } = useParams();
   const router = useRouter();
@@ -77,11 +95,11 @@ export default function CourseDetailsPage() {
   if (error || !course) {
     return (
       <div className="container mx-auto px-4 py-12 text-center">
-        <h2 className="text-2xl font-bold text-red-600 mb-4">Error Loading Course</h2>
-        <p className="text-gray-600 mb-6">{error || "Course not found"}</p>
+        <h2 className="text-2xl font-bold text-red-600 mb-4">خطا در بارگذاری دوره</h2>
+        <p className="text-gray-600 mb-6">{error || "دوره مورد نظر یافت نشد"}</p>
         <Button onClick={() => router.push('/courses')} variant="outline">
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Courses
+          <ArrowLeft className="ml-2 h-4 w-4" />
+          بازگشت به دوره‌ها
         </Button>
       </div>
     );
@@ -94,21 +112,21 @@ export default function CourseDetailsPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <Button
             variant="ghost"
-            className="text-gray-300 hover:text-white hover:bg-white/10 mb-8 pl-0"
+            className="text-gray-300 hover:text-white hover:bg-white/10 mb-8 pr-0"
             onClick={() => router.push('/courses')}
           >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Courses
+            <ArrowLeft className="ml-2 h-4 w-4" />
+            بازگشت به دوره‌ها
           </Button>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <div className="flex flex-wrap gap-2">
                 <Badge variant="secondary" className="bg-blue-600 text-white hover:bg-blue-700">
-                  {course.category}
+                  {categoryMap[course.category] || course.category}
                 </Badge>
                 <Badge variant="outline" className="text-white border-white/20">
-                  {course.level}
+                  {levelMap[course.level] || course.level}
                 </Badge>
               </div>
 
@@ -124,13 +142,13 @@ export default function CourseDetailsPage() {
                 <div className="flex items-center gap-2">
                   <div className="flex text-yellow-400">
                     <Star className="h-4 w-4 fill-current" />
-                    <span className="ml-1 font-medium text-white">{course.rating?.toFixed(1)}</span>
+                    <span className="mr-1 font-medium text-white">{course.rating?.toFixed(1)}</span>
                   </div>
-                  <span>Rating</span>
+                  <span>امتیاز</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Users className="h-4 w-4" />
-                  <span>{course.students} students</span>
+                  <span>{course.students} دانشجو</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="h-4 w-4" />
@@ -141,11 +159,11 @@ export default function CourseDetailsPage() {
               <div className="flex items-center gap-4 pt-4">
                 <div className="flex items-center gap-3">
                   <div className="h-10 w-10 rounded-full bg-blue-600 flex items-center justify-center text-lg font-bold">
-                    {course.instructor?.name?.[0] || 'I'}
+                    {course.instructor?.name?.[0] || 'م'}
                   </div>
                   <div>
-                    <div className="text-sm text-gray-400">Created by</div>
-                    <div className="font-medium">{course.instructor?.name || 'Instructor'}</div>
+                    <div className="text-sm text-gray-400">مدرس دوره</div>
+                    <div className="font-medium">{course.instructor?.name || 'مدرس'}</div>
                   </div>
                 </div>
               </div>
@@ -160,32 +178,32 @@ export default function CourseDetailsPage() {
                 />
                 <div className="p-8">
                   <div className="text-3xl font-bold text-gray-900 mb-6">
-                    ${course.price}
+                    {course.price} دلار
                   </div>
                   <Button className="w-full text-lg py-6 bg-blue-600 hover:bg-blue-700 mb-4">
-                    Enroll Now
+                    ثبت‌نام در دوره
                   </Button>
                   <p className="text-center text-sm text-gray-500 mb-6">
-                    30-Day Money-Back Guarantee
+                    ضمانت بازگشت وجه ۳۰ روزه
                   </p>
                   <div className="space-y-4">
-                    <h4 className="font-semibold text-gray-900">This course includes:</h4>
+                    <h4 className="font-semibold text-gray-900">این دوره شامل موارد زیر است:</h4>
                     <ul className="space-y-3 text-sm text-gray-600">
                       <li className="flex items-center gap-3">
                         <CheckCircle className="h-4 w-4 text-green-500" />
-                        <span>{course.duration} of on-demand video</span>
+                        <span>{course.duration} ویدئوی آموزشی درخواستی</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <CheckCircle className="h-4 w-4 text-green-500" />
-                        <span>Full lifetime access</span>
+                        <span>دسترسی کامل مادام‌العمر</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <CheckCircle className="h-4 w-4 text-green-500" />
-                        <span>Access on mobile and TV</span>
+                        <span>دسترسی روی موبایل و تلویزیون</span>
                       </li>
                       <li className="flex items-center gap-3">
                         <Award className="h-4 w-4 text-green-500" />
-                        <span>Certificate of completion</span>
+                        <span>گواهینامه معتبر پایان دوره</span>
                       </li>
                     </ul>
                   </div>
@@ -201,13 +219,13 @@ export default function CourseDetailsPage() {
         <div className="grid lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2 space-y-12">
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">What you'll learn</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">آنچه در این دوره یاد خواهید گرفت</h2>
               <div className="grid sm:grid-cols-2 gap-4">
                 {[1, 2, 3, 4, 5, 6].map((item) => (
                   <div key={item} className="flex items-start gap-3">
                     <CheckCircle className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
                     <span className="text-gray-600">
-                      Master the fundamental concepts and practical applications of the subject matter.
+                      تسلط کامل بر مفاهیم اساسی و کاربردهای عملی موضوعات مطرح‌شده در دوره.
                     </span>
                   </div>
                 ))}
@@ -215,14 +233,14 @@ export default function CourseDetailsPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Description</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">توضیحات دوره</h2>
               <div className="prose max-w-none text-gray-600">
                 <p>{course.description}</p>
                 <p className="mt-4">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  این دوره به صورت کاملاً تعاملی و بر اساس آخرین نیازهای بازار کار تدوین شده است تا کارآموزان بتوانند در کوتاه‌ترین زمان ممکن، مهارت‌های مورد نیاز خود را کسب کنند و وارد بازار کار شوند.
                 </p>
                 <p className="mt-4">
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  با ثبت‌نام در این دوره، علاوه بر دسترسی کامل به ویدئوها، از پشتیبانی مدرسین مجرب و تمرین‌های کلاسی برای تثبیت هر چه بیشتر مطالب بهره‌مند خواهید شد.
                 </p>
               </div>
             </section>

@@ -30,8 +30,8 @@ export default function LoginPage() {
     // Basic validation
     if (!email || !password) {
       toast({
-        title: "Login Failed",
-        description: "Email and password are required.",
+        title: "ورود ناموفق",
+        description: "ایمیل و رمز عبور الزامی است.",
         variant: "destructive",
       });
       setIsLoading(false);
@@ -47,14 +47,14 @@ export default function LoginPage() {
 
       if (result?.error) {
         toast({
-          title: "Login Failed",
-          description: "Invalid credentials. Please check your email and password.",
+          title: "ورود ناموفق",
+          description: "اطلاعات ورود نامعتبر است. لطفاً ایمیل و رمز عبور خود را بررسی کنید.",
           variant: "destructive",
         });
       } else {
         toast({
-          title: "Login Successful",
-          description: "Redirecting...",
+          title: "ورود موفقیت‌آمیز",
+          description: "در حال هدایت...",
         });
         // We let the client router handle the redirect, or refresh to let middleware handle it
         router.refresh();
@@ -64,8 +64,8 @@ export default function LoginPage() {
     } catch (error) {
       console.error('Login error:', error);
       toast({
-        title: "Login Failed",
-        description: "An unexpected error occurred. Please try again.",
+        title: "ورود ناموفق",
+        description: "یک خطای غیرمنتظره رخ داد. لطفاً دوباره تلاش کنید.",
         variant: "destructive",
       });
     } finally {
@@ -77,25 +77,25 @@ export default function LoginPage() {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <Card className="mx-auto max-w-sm">
         <CardHeader>
-          <CardTitle className="text-2xl">Login</CardTitle>
+          <CardTitle className="text-2xl">ورود به حساب</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account
+            ایمیل خود را در زیر وارد کنید تا به حساب کاربری خود وارد شوید
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4" id="login-form">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">ایمیل</Label>
               <Input
                 id="email"
                 name="email"
                 type="email"
-                placeholder="m@example.com"
+                placeholder="example@gmail.com"
                 required
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">رمز عبور</Label>
               <Input
                 id="password"
                 name="password"
@@ -105,7 +105,7 @@ export default function LoginPage() {
               />
             </div>
             <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? 'Logging in...' : 'Login'}
+              {isLoading ? 'در حال ورود...' : 'ورود'}
             </Button>
           </form>
         </CardContent>

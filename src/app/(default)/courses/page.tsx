@@ -2,13 +2,15 @@ import { db } from "@/lib/db";
 import CoursesList from "@/components/courses/courses-list";
 import { Metadata } from "next";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
-  title: "All Courses | Jahat",
-  description: "Browse our comprehensive collection of practical and skill training courses ranging from coding to digital design.",
-  keywords: ["Jahat Courses", "Elite Training", "Programming", "Office Skills", "Website Design", "Online Learning"],
+  title: "همه دوره‌ها | جهت",
+  description: "مجموعه جامع دوره‌های آموزش مهارت‌های تخصصی و کاربردی ما از برنامه‌نویسی تا مهارت‌های هفت‌گانه را مرور کنید.",
+  keywords: ["دوره‌های جهت", "آموزش نخبگان", "برنامه‌نویسی", "مهارت‌های اداری", "طراحی وب‌سایت", "آموزش آنلاین"],
   openGraph: {
-    title: "All Courses | Jahat",
-    description: "Explore elite skill training courses.",
+    title: "همه دوره‌ها | جهت",
+    description: "مرور دوره‌های آموزش مهارت‌های تخصصی جهت.",
     type: "website",
   }
 };

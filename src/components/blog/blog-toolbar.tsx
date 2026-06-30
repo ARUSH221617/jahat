@@ -78,11 +78,11 @@ export function BlogToolbar({ categories }: BlogToolbarProps) {
   return (
     <div className="flex flex-col sm:flex-row gap-4 items-center justify-between bg-card p-4 rounded-lg border shadow-sm">
       <div className="relative w-full sm:max-w-sm">
-        <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+        <Search className="absolute right-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input
           type="search"
-          placeholder="Search posts..."
-          className="pl-8 w-full"
+          placeholder="جستجوی مقالات..."
+          className="pr-8 pl-2.5 w-full"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -93,7 +93,7 @@ export function BlogToolbar({ categories }: BlogToolbarProps) {
           <PopoverTrigger asChild>
             <Button variant="outline" className="gap-2 w-full sm:w-auto">
               <ListFilter className="h-4 w-4" />
-              Filter
+              فیلتر
               {activeFiltersCount > 0 && (
                 <Badge variant="secondary" className="ml-1 h-5 w-5 rounded-full p-0 flex items-center justify-center">
                   {activeFiltersCount}
@@ -103,24 +103,24 @@ export function BlogToolbar({ categories }: BlogToolbarProps) {
           </PopoverTrigger>
           <PopoverContent className="w-[240px] p-0" align="end">
             <div className="p-4 border-b">
-              <h4 className="font-medium leading-none">Filter by Category</h4>
+              <h4 className="font-medium leading-none">فیلتر بر اساس دسته‌بندی</h4>
             </div>
             <div className="p-2 grid gap-1">
               {categories.map((category) => (
                 <Button
                   key={category.id}
                   variant={currentCategory === category.slug ? "secondary" : "ghost"}
-                  className="justify-start font-normal"
+                  className="justify-start font-normal gap-2"
                   onClick={() => handleCategorySelect(category.slug)}
                 >
                   {category.name}
                   {currentCategory === category.slug && (
-                    <span className="ml-auto flex h-2 w-2 rounded-full bg-primary" />
+                    <span className="mr-auto flex h-2 w-2 rounded-full bg-primary" />
                   )}
                 </Button>
               ))}
               {categories.length === 0 && (
-                <p className="text-sm text-muted-foreground p-2">No categories found.</p>
+                <p className="text-sm text-muted-foreground p-2">دسته‌بندی یافت نشد.</p>
               )}
             </div>
             {(currentCategory) && (
@@ -130,7 +130,7 @@ export function BlogToolbar({ categories }: BlogToolbarProps) {
                   className="w-full justify-center text-muted-foreground hover:text-foreground"
                   onClick={clearFilters}
                 >
-                  Clear filters
+                  پاک کردن فیلترها
                 </Button>
               </div>
             )}

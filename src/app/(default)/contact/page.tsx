@@ -42,8 +42,8 @@ export default function ContactPage() {
 
       if (response.ok) {
         toast({
-          title: "Message Sent Successfully!",
-          description: "We'll get back to you within 24 hours.",
+          title: "پیام با موفقیت ارسال شد!",
+          description: "ما ظرف ۲۴ ساعت آینده با شما تماس خواهیم گرفت.",
         });
         setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
@@ -51,8 +51,8 @@ export default function ContactPage() {
       }
     } catch (error) {
       toast({
-        title: "Error",
-        description: "Failed to send message. Please try again.",
+        title: "خطا",
+        description: "ارسال پیام با خطا مواجه شد. لطفا دوباره تلاش کنید.",
         variant: "destructive",
       });
     } finally {
@@ -68,11 +68,10 @@ export default function ContactPage() {
           <div className="text-center space-y-8">
             <div className="space-y-4">
               <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Get in Touch
+                ارتباط با ما
               </h1>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                We're here to help you on your educational journey. Reach out to us for any questions, 
-                support, or information about our programs.
+                ما اینجا هستیم تا به شما در طول مسیر آموزشی‌تان کمک کنیم. برای هرگونه سوال، پشتیبانی یا اطلاعات درباره برنامه‌های ما با ما تماس بگیرید.
               </p>
             </div>
           </div>
@@ -87,14 +86,14 @@ export default function ContactPage() {
             <div className="lg:col-span-2">
               <Card className="shadow-lg">
                 <CardHeader>
-                  <CardTitle className="text-2xl text-gray-900">Send Us a Message</CardTitle>
+                  <CardTitle className="text-2xl text-gray-900">ارسال پیام به ما</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <Label htmlFor="name" className="text-gray-700 font-medium">
-                          Full Name *
+                          نام و نام خانوادگی *
                         </Label>
                         <Input
                           id="name"
@@ -103,13 +102,13 @@ export default function ContactPage() {
                           value={formData.name}
                           onChange={handleInputChange}
                           required
-                          placeholder="John Doe"
+                          placeholder="مثال: علی رضایی"
                           className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                         />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="email" className="text-gray-700 font-medium">
-                          Email Address *
+                          آدرس ایمیل *
                         </Label>
                         <Input
                           id="email"
@@ -118,7 +117,7 @@ export default function ContactPage() {
                           value={formData.email}
                           onChange={handleInputChange}
                           required
-                          placeholder="john@example.com"
+                          placeholder="example@gmail.com"
                           className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                         />
                       </div>
@@ -126,7 +125,7 @@ export default function ContactPage() {
                     
                     <div className="space-y-2">
                       <Label htmlFor="subject" className="text-gray-700 font-medium">
-                        Subject *
+                        موضوع پیام *
                       </Label>
                       <Input
                         id="subject"
@@ -135,14 +134,14 @@ export default function ContactPage() {
                         value={formData.subject}
                         onChange={handleInputChange}
                         required
-                        placeholder="How can we help you?"
+                        placeholder="چگونه می‌توانیم به شما کمک کنیم؟"
                         className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                       />
                     </div>
                     
                     <div className="space-y-2">
                       <Label htmlFor="message" className="text-gray-700 font-medium">
-                        Message *
+                        متن پیام *
                       </Label>
                       <Textarea
                         id="message"
@@ -150,7 +149,7 @@ export default function ContactPage() {
                         value={formData.message}
                         onChange={handleInputChange}
                         required
-                        placeholder="Tell us more about your inquiry..."
+                        placeholder="جزئیات پیام خود را اینجا بنویسید..."
                         rows={6}
                         className="border-gray-300 focus:border-blue-500 focus:ring-blue-500 resize-none"
                       />
@@ -162,14 +161,14 @@ export default function ContactPage() {
                       className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 text-lg font-medium"
                     >
                       {isSubmitting ? (
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-center gap-2">
                           <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                          <span>Sending...</span>
+                          <span>در حال ارسال...</span>
                         </div>
                       ) : (
-                        <div className="flex items-center justify-center space-x-2">
+                        <div className="flex items-center justify-center gap-2">
                           <Send className="h-5 w-5" />
-                          <span>Send Message</span>
+                          <span>ارسال پیام</span>
                         </div>
                       )}
                     </Button>
@@ -183,47 +182,45 @@ export default function ContactPage() {
               {/* Contact Details */}
               <Card className="shadow-lg">
                 <CardHeader>
-                  <CardTitle className="text-xl text-gray-900">Contact Information</CardTitle>
+                  <CardTitle className="text-xl text-gray-900">اطلاعات تماس</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  <div className="flex items-start space-x-3">
+                  <div className="flex items-start gap-3">
                     <MapPin className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
                     <div>
-                      <p className="font-medium text-gray-900">Address</p>
+                      <p className="font-medium text-gray-900">آدرس</p>
                       <p className="text-gray-600 text-sm">
-                        Jahat Educational Institute, Imam Khomeini Street<br />
-                        Khorramshahr, Khuzestan<br />
-                        Iran
+                        خرمشهر، خوزستان، خیابان امام خمینی، مؤسسه آموزشی جهت
                       </p>
                     </div>
                   </div>
                   
-                  <div className="flex items-start space-x-3">
+                  <div className="flex items-start gap-3">
                     <Phone className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
                     <div>
-                      <p className="font-medium text-gray-900">Phone</p>
-                      <p className="text-gray-600 text-sm">+98 61 2345 6789</p>
-                      <p className="text-gray-600 text-sm">+98 61 2345 6790</p>
+                      <p className="font-medium text-gray-900">تلفن تماس</p>
+                      <p className="text-gray-600 text-sm" dir="ltr">+۹۸ ۶۱ ۲۳۴۵ ۶۷۸۹</p>
+                      <p className="text-gray-600 text-sm" dir="ltr">+۹۸ ۶۱ ۲۳۴۵ ۶۷۹۰</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-start space-x-3">
+                  <div className="flex items-start gap-3">
                     <Mail className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
                     <div>
-                      <p className="font-medium text-gray-900">Email</p>
+                      <p className="font-medium text-gray-900">ایمیل</p>
                       <p className="text-gray-600 text-sm">info@jahatintl.com</p>
                       <p className="text-gray-600 text-sm">support@jahatintl.com</p>
                     </div>
                   </div>
                   
-                  <div className="flex items-start space-x-3">
+                  <div className="flex items-start gap-3">
                     <Clock className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
                     <div>
-                      <p className="font-medium text-gray-900">Office Hours</p>
+                      <p className="font-medium text-gray-900">ساعات کاری</p>
                       <p className="text-gray-600 text-sm">
-                        Saturday - Wednesday: 8:00 AM - 4:00 PM<br />
-                        Thursday: 8:00 AM - 2:00 PM<br />
-                        Friday: Closed
+                        شنبه تا چهارشنبه: ۸:۰۰ صبح تا ۴:۰۰ بعد از ظهر<br />
+                        پنج‌شنبه: ۸:۰۰ صبح تا ۲:۰۰ بعد از ظهر<br />
+                        جمعه: تعطیل
                       </p>
                     </div>
                   </div>
@@ -233,13 +230,13 @@ export default function ContactPage() {
               {/* Social Media */}
               <Card className="shadow-lg">
                 <CardHeader>
-                  <CardTitle className="text-xl text-gray-900">Follow Us</CardTitle>
+                  <CardTitle className="text-xl text-gray-900">ما را دنبال کنید</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-gray-600 mb-4">
-                    Stay connected with us on social media for updates and news.
+                    برای مطلع شدن از آخرین اخبار و به‌روزرسانی‌ها، ما را در شبکه‌های اجتماعی دنبال کنید.
                   </p>
-                  <div className="flex space-x-3">
+                  <div className="flex gap-3">
                     <a 
                       href="#" 
                       className="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full transition-colors"
@@ -281,10 +278,10 @@ export default function ContactPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
-              Find Us Here
+              موقعیت ما روی نقشه
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Visit our campus in Khorramshahr, Khuzestan
+              از پردیس ما در خرمشهر، خوزستان بازدید کنید
             </p>
           </div>
           
@@ -308,51 +305,47 @@ export default function ContactPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
-              Frequently Asked Questions
+              پرسش‌های متداول
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Quick answers to common questions about Jahat
+              پاسخ‌های سریع به سوالات متداول درباره جهت
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <Card className="p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                How do I enroll in a course?
+                چگونه در یک دوره ثبت‌نام کنم؟
               </h3>
               <p className="text-gray-600">
-                You can enroll through our website by visiting the Courses page, selecting your desired course, 
-                and clicking the enrollment button. You can also visit our campus for in-person registration.
+                شما می‌توانید به صورت آنلاین با مراجعه به صفحه دوره‌ها، دوره مورد نظر خود را انتخاب کرده و ثبت‌نام کنید. همچنین می‌توانید برای ثبت‌نام حضوری به پردیس ما مراجعه کنید.
               </p>
             </Card>
             
             <Card className="p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                What are the admission requirements?
+                شرایط پذیرش چیست؟
               </h3>
               <p className="text-gray-600">
-                Requirements vary by program. Generally, you need a high school diploma or equivalent, 
-                proficiency in the language of instruction, and a passion for education.
+                شرایط ثبت‌نام بسته به هر دوره متفاوت است. به طور کلی، علاقه به یادگیری و پیش‌نیازهای مهارتی مربوط به هر کلاس الزامی است.
               </p>
             </Card>
             
             <Card className="p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Do you offer online courses?
+                آیا دوره‌های آنلاین هم ارائه می‌دهید؟
               </h3>
               <p className="text-gray-600">
-                Yes, we offer both online and hybrid learning options. Many of our courses are available 
-                through our state-of-the-art learning management system.
+                بله، ما هم گزینه‌های یادگیری آنلاین و هم ترکیبی (حضوری و آنلاین) را ارائه می‌دهیم. بسیاری از دوره‌ها از طریق سامانه مدیریت یادگیری پیشرفته در دسترس هستند.
               </p>
             </Card>
             
             <Card className="p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                What is the duration of programs?
+                طول مدت دوره‌ها چقدر است؟
               </h3>
               <p className="text-gray-600">
-                Program durations vary from 4 weeks for short courses to 2 years for advanced diploma programs. 
-                Each course page specifies its duration.
+                مدت زمان برنامه‌ها از ۴ هفته برای دوره‌های کوتاه تا زمان‌های طولانی‌تر برای دوره‌های جامع پیشرفته متغیر است. جزئیات دقیق در صفحه هر دوره مشخص شده است.
               </p>
             </Card>
           </div>

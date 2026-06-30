@@ -9,8 +9,8 @@ import { BlogToolbar } from "@/components/blog/blog-toolbar";
 import { cn } from "@/lib/utils";
 
 export const metadata = {
-  title: "Blog - Knowledge Transfer",
-  description: "Insights and articles on education, technology, and learning.",
+  title: "وبلاگ - انتقال دانش | جهت",
+  description: "دیدگاه‌ها و مقالات درباره آموزش، فناوری و یادگیری در مؤسسه جهت.",
 };
 
 /**
@@ -73,11 +73,11 @@ export default async function BlogPage({
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
-      <BlogBreadcrumb items={[{ label: "Blog" }]} />
+      <BlogBreadcrumb items={[{ label: "وبلاگ" }]} />
       <div className="flex flex-col gap-2">
-        <h1 className="text-4xl font-bold tracking-tight">Blog</h1>
+        <h1 className="text-4xl font-bold tracking-tight">وبلاگ</h1>
         <p className="text-xl text-muted-foreground">
-          Latest updates, articles, and insights.
+          آخرین به‌روزرسانی‌ها، مقالات و دیدگاه‌های آموزشی جهت.
         </p>
       </div>
 
@@ -86,7 +86,7 @@ export default async function BlogPage({
 
       {posts.length === 0 ? (
         <div className="py-20 text-center text-muted-foreground">
-          No posts found.
+          هیچ مقاله‌ای یافت نشد.
         </div>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -134,17 +134,17 @@ export default async function BlogPage({
           {pageNum > 1 && (
             <Button variant="outline" asChild>
               <Link href={`/blog?page=${pageNum - 1}${category ? `&category=${category}` : ""}${search ? `&search=${search}` : ""}`}>
-                Previous
+                قبلی
               </Link>
             </Button>
           )}
           <Button variant="outline" disabled>
-            Page {pageNum} of {totalPages}
+            صفحه {pageNum} از {totalPages}
           </Button>
           {pageNum < totalPages && (
             <Button variant="outline" asChild>
               <Link href={`/blog?page=${pageNum + 1}${category ? `&category=${category}` : ""}${search ? `&search=${search}` : ""}`}>
-                Next
+                بعدی
               </Link>
             </Button>
           )}

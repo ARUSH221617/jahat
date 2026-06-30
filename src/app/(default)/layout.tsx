@@ -17,40 +17,40 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://jahat.ir'),
-  title: "Jahat - Educational Institute",
+  title: "مؤسسه آموزشی جهت",
   description:
-    "Official online platform for Jahat Educational Institute. Empowering students and cultivating elite talents with practical skills and professional training.",
+    "پلتفرم آنلاین رسمی مؤسسه آموزشی جهت. توانمندسازی دانش‌آموزان و پرورش استعدادهای نخبه با مهارت‌های کاربردی و آموزش‌های حرفه‌ای.",
   keywords: [
-    "Jahat",
-    "Educational Institute",
-    "Elite Training",
-    "Programming",
-    "Web Design",
-    "Office Skills",
-    "Konkur Preparation",
-    "Education Certificate Iran",
-    "Khorramshahr Educational Workshops"
+    "جهت",
+    "مؤسسه آموزشی جهت",
+    "آموزش نخبگان",
+    "برنامه‌نویسی",
+    "طراحی وب",
+    "مهارت‌های اداری",
+    "آمادگی کنکور",
+    "مدرک آموزشی ایران",
+    "کارگاه‌های آموزشی خرمشهر"
   ],
   alternates: {
     canonical: '/',
   },
-  authors: [{ name: "Jahat Team" }],
+  authors: [{ name: "تیم جهت" }],
   icons: {
     icon: "/logo.svg",
   },
   openGraph: {
-    title: "Jahat - Educational Institute",
+    title: "مؤسسه آموزشی جهت",
     description:
-      "Empowering students and cultivating elite talents with practical skills and professional training",
+      "توانمندسازی دانش‌آموزان و پرورش استعدادهای نخبه با مهارت‌های کاربردی و آموزش‌های حرفه‌ای",
     type: "website",
-    siteName: "Jahat",
-    locale: "en_US",
+    siteName: "جهت",
+    locale: "fa_IR",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jahat - Educational Institute",
+    title: "مؤسسه آموزشی جهت",
     description:
-      "Empowering students and cultivating elite talents with practical skills and professional training",
+      "توانمندسازی دانش‌آموزان و پرورش استعدادهای نخبه با مهارت‌های کاربردی و آموزش‌های حرفه‌ای",
   },
 };
 

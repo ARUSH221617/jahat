@@ -6,37 +6,37 @@ import { Calendar, Users, Target, Eye, Award, BookOpen, Globe, Lightbulb } from 
 
 const timelineEvents = [
   {
-    year: "2001",
-    title: "Jahat Founded",
-    description: "Jahat Educational Institute was established with a vision to build a comprehensive, self-sustaining, and elite-cultivating educational system.",
+    year: "۲۰۰۱",
+    title: "تاسیس جهت",
+    description: "مؤسسه آموزشی جهت با چشم‌انداز ساخت یک سیستم آموزشی جامع، خودکفا و نخبه‌پرور تاسیس شد.",
     icon: Calendar,
     color: "bg-blue-600"
   },
   {
-    year: "2006",
-    title: "First Teacher Training Program",
-    description: "Launched our flagship teacher training program with 50 pioneering educators.",
+    year: "۲۰۰۶",
+    title: "اولین برنامه آموزش مدرسان",
+    description: "راه‌اندازی برنامه شاخص آموزش مدرسان با ۵۰ معلم پیشگام.",
     icon: Users,
     color: "bg-green-600"
   },
   {
-    year: "2015",
-    title: "Expanded Curriculum",
-    description: "Introduced advanced courses in educational psychology and classroom management.",
+    year: "۲۰۱۵",
+    title: "توسعه برنامه درسی",
+    description: "معرفی دوره‌های پیشرفته در روانشناسی تربیتی و مدیریت کلاس درس.",
     icon: BookOpen,
     color: "bg-purple-600"
   },
   {
-    year: "2021",
-    title: "Digital Transformation",
-    description: "Transitioned to hybrid learning models, combining online and in-person education.",
+    year: "۲۰۲۱",
+    title: "تحول دیجیتال",
+    description: "انتقال به مدل‌های یادگیری ترکیبی، با ادغام آموزش آنلاین و حضوری.",
     icon: Globe,
     color: "bg-orange-600"
   },
   {
-    year: "2024",
-    title: "New Learning Management System",
-    description: "Launched state-of-the-art LMS with AI-powered personalized learning paths.",
+    year: "۲۰۲۴",
+    title: "سامانه مدیریت یادگیری جدید",
+    description: "راه‌اندازی سامانه مدیریت یادگیری (LMS) پیشرفته با مسیرهای یادگیری شخصی‌سازی‌شده مبتنی بر هوش مصنوعی.",
     icon: Lightbulb,
     color: "bg-yellow-600"
   }
@@ -44,27 +44,27 @@ const timelineEvents = [
 
 const teamMembers = [
   {
-    name: "Dr. Mohammad Reza Alavi",
-    role: "Founder & Director",
-    description: "Educational visionary with 25+ years of experience in teacher education.",
+    name: "دکتر محمدرضا علوی",
+    role: "مؤسس و مدیر عامل",
+    description: "صاحب‌نظر آموزشی با بیش از ۲۵ سال تجربه در آموزش مدرسان.",
     avatar: "/api/placeholder/150/150"
   },
   {
-    name: "Prof. Fatemeh Mohammadi",
-    role: "Academic Director",
-    description: "Expert in educational psychology and curriculum development.",
+    name: "پروفسور فاطمه محمدی",
+    role: "مدیر آموزش",
+    description: "متخصص روانشناسی تربیتی و توسعه برنامه درسی.",
     avatar: "/api/placeholder/150/150"
   },
   {
-    name: "Dr. Ali Kazemi",
-    role: "Head of Training Programs",
-    description: "Specialist in modern teaching methodologies and educational technology.",
+    name: "دکتر علی کاظمی",
+    role: "رئیس برنامه‌های آموزشی",
+    description: "متخصص روش‌های نوین تدریس و فناوری‌های آموزشی.",
     avatar: "/api/placeholder/150/150"
   },
   {
-    name: "Ms. Maryam Hosseini",
-    role: "Student Affairs Director",
-    description: "Dedicated to student success and career development support.",
+    name: "سرکار خانم مریم حسینی",
+    role: "مدیر امور دانشجویان",
+    description: "متعهد به موفقیت دانشجویان و پشتیبانی از توسعه مسیر شغلی.",
     avatar: "/api/placeholder/150/150"
   }
 ];
@@ -99,14 +99,13 @@ export default function AboutPage() {
           <div className="text-center space-y-8">
             <div className="space-y-4 animate-fade-in">
               <Badge className="bg-yellow-400 text-blue-900 hover:bg-yellow-300">
-                About Our Institution
+                درباره موسسه ما
               </Badge>
               <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                About Jahat Educational Institute
+                درباره مؤسسه آموزشی جهت
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Jahat is a beacon of educational excellence,
-                dedicated to empowering students and transforming lives through quality training.
+                جهت نمادی از سرآمدی آموزشی است که به توانمندسازی دانش‌آموزان و متحول کردن زندگی آن‌ها از طریق آموزش‌های باکیفیت اختصاص یافته است.
               </p>
             </div>
           </div>
@@ -120,33 +119,29 @@ export default function AboutPage() {
             <div className="space-y-6">
               <div className="space-y-2">
                 <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
-                  Our Story
+                  داستان ما
                 </h2>
                 <div className="h-1 w-20 bg-yellow-400 rounded"></div>
               </div>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Founded with a clear vision, the Jahat Educational Institute emerged to build an elite learning environment: 
-                to create a world-class institution that would empower students and shape the future of talented youth. 
-                What began with a small group of students has now grown into a premier educational center serving over 1,200 participants annually.
+                مؤسسه آموزشی جهت با چشم‌اندازی روشن برای ساخت یک محیط یادگیری نخبه‌پرور شکل گرفت: ایجاد مؤسسه‌ای در سطح جهانی که دانشجویان را توانمند ساخته و آینده جوانان بااستعداد را رقم می‌زند. آنچه با گروه کوچکی از دانش‌آموزان آغاز شد، اکنون به یک مرکز آموزشی پیشرو تبدیل شده است که سالانه به بیش از ۱,۲۰۰ شرکت‌کننده خدمت‌رسانی می‌کند.
               </p>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Over the past two decades, we have remained committed to our founding principles of excellence, 
-                innovation, and inclusivity. Our programs have evolved to meet the changing needs of 21st-century education, 
-                incorporating cutting-edge teaching methodologies and educational technologies.
+                در طول دو دهه گذشته، ما متعهد به اصول بنیادی خود یعنی سرآمدی، نوآوری و همه‌گیری باقی مانده‌ایم. برنامه‌های ما برای پاسخگویی به نیازهای در حال تغییر آموزش قرن بیست و یکم تکامل یافته و روش‌های نوین تدریس و فناوری‌های آموزشی روز را در بر گرفته‌اند.
               </p>
               <div className="grid grid-cols-2 gap-6 pt-6">
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center gap-3">
                   <Award className="h-8 w-8 text-yellow-500" />
                   <div>
-                    <p className="font-bold text-2xl text-gray-900">20+</p>
-                    <p className="text-gray-600">Years of Excellence</p>
+                    <p className="font-bold text-2xl text-gray-900">۲۰+</p>
+                    <p className="text-gray-600">سال سابقه درخشان</p>
                   </div>
                 </div>
-                <div className="flex items-center space-x-3">
+                <div className="flex items-center gap-3">
                   <Users className="h-8 w-8 text-blue-600" />
                   <div>
-                    <p className="font-bold text-2xl text-gray-900">1,200+</p>
-                    <p className="text-gray-600">Graduate Teachers</p>
+                    <p className="font-bold text-2xl text-gray-900">۱,۲۰۰+</p>
+                    <p className="text-gray-600">دانش‌آموخته</p>
                   </div>
                 </div>
               </div>
@@ -167,24 +162,24 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
-              Frequently Asked Questions
+              پرسش‌های متداول
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Common questions about Jahat certifications and programs
+              پاسخ به سوالات رایج در مورد دوره‌ها و مدارک جهت
             </p>
           </div>
           <div className="max-w-3xl mx-auto space-y-6">
             <div className="border rounded-lg p-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Is Jahat accredited?</h3>
-              <p className="text-gray-600">Yes, Jahat is a fully accredited educational institute recognized by educational authorities.</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">آیا مدارک جهت معتبر هستند؟</h3>
+              <p className="text-gray-600">بله، جهت یک موسسه آموزشی کاملاً معتبر است و مدارک آن مورد تایید سازمان‌های مربوطه می‌باشد.</p>
             </div>
             <div className="border rounded-lg p-6">
-               <h3 className="text-xl font-bold text-gray-900 mb-2">What is the duration of courses?</h3>
-               <p className="text-gray-600">Courses range from short workshops (1-4 weeks) to comprehensive certification programs lasting over 9 weeks.</p>
+               <h3 className="text-xl font-bold text-gray-900 mb-2">مدت زمان دوره‌ها چقدر است؟</h3>
+               <p className="text-gray-600">مدت زمان دوره‌ها از کارگاه‌های کوتاه مهارتی (۱ تا ۴ هفته) تا دوره‌های جامع مهارتی (بیش از ۹ هفته) متغیر است.</p>
             </div>
              <div className="border rounded-lg p-6">
-               <h3 className="text-xl font-bold text-gray-900 mb-2">How do I get certified?</h3>
-               <p className="text-gray-600">You must complete all course modules and pass the final assessment to receive your digital and physical certificate.</p>
+               <h3 className="text-xl font-bold text-gray-900 mb-2">چگونه گواهینامه دوره را دریافت کنم؟</h3>
+               <p className="text-gray-600">پس از تکمیل موفقیت‌آمیز تمام مباحث دوره و قبولی در ارزیابی نهایی، گواهینامه معتبر دیجیتال و فیزیکی شما صادر خواهد شد.</p>
             </div>
           </div>
         </div>
@@ -195,10 +190,10 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
-              Our Journey Through Time
+              مسیر توسعه ما در گذر زمان
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Key milestones that have shaped our institution and defined our legacy
+              نقاط عطف کلیدی که موسسه ما را شکل داده و دستاوردهای ما را تعریف کرده‌اند
             </p>
           </div>
           
@@ -244,54 +239,50 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Mission */}
             <div className="space-y-6">
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center gap-3">
                 <Target className="h-10 w-10 text-blue-600" />
-                <h2 className="text-3xl font-bold text-gray-900">Our Mission</h2>
+                <h2 className="text-3xl font-bold text-gray-900">ماموریت ما</h2>
               </div>
               <p className="text-lg text-gray-600 leading-relaxed">
-                To empower educators with innovative teaching methodologies, psychological insights, and leadership skills 
-                necessary to create transformative learning experiences. We are committed to fostering excellence in education 
-                through comprehensive professional development programs that combine theory with practical application.
+                توانمندسازی فراگیران با استفاده از روش‌های نوین تدریس، روانشناسی تربیتی و مهارت‌های رهبری برای خلق تجربه‌های یادگیری متحول‌کننده. ما متعهد به ارتقای سرآمدی در آموزش از طریق برنامه‌های جامع توسعه حرفه‌ای هستیم که تئوری را با کاربردهای عملی ترکیب می‌کند.
               </p>
               <div className="space-y-3">
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                  <span className="text-gray-700">Quality teacher education and training</span>
+                  <span className="text-gray-700">آموزش و تربیت باکیفیت فراگیران و مدرسان</span>
                 </div>
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                  <span className="text-gray-700">Research-based teaching methodologies</span>
+                  <span className="text-gray-700">روش‌های تدریس مبتنی بر پژوهش و تجربه</span>
                 </div>
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                  <span className="text-gray-700">Continuous professional development</span>
+                  <span className="text-gray-700">توسعه مداوم مهارت‌های حرفه‌ای فراگیران</span>
                 </div>
               </div>
             </div>
 
             {/* Vision */}
             <div className="space-y-6">
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center gap-3">
                 <Eye className="h-10 w-10 text-blue-600" />
-                <h2 className="text-3xl font-bold text-gray-900">Our Vision</h2>
+                <h2 className="text-3xl font-bold text-gray-900">چشم‌انداز ما</h2>
               </div>
               <p className="text-lg text-gray-600 leading-relaxed">
-                To be the leading teacher training institution in the region, recognized for excellence in education, 
-                innovation in teaching, and our contribution to educational advancement. We aspire to create a community 
-                of educators who inspire positive change and shape the future of education.
+                تبدیل شدن به موسسه آموزشی پیشرو در منطقه، شناخته‌شده برای سرآمدی در آموزش، نوآوری در تدریس و سهم موثر ما در پیشرفت علمی جامعه. ما در تلاشیم تا جامعه‌ای از متخصصان خلاق و اثرگذار ایجاد کنیم.
               </p>
               <div className="space-y-3">
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                  <span className="text-gray-700">Regional leadership in teacher education</span>
+                  <span className="text-gray-700">رهبری منطقه‌ای در آموزش مهارت‌های تخصصی</span>
                 </div>
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                  <span className="text-gray-700">Innovation in educational technology</span>
+                  <span className="text-gray-700">نوآوری در به‌کارگیری فناوری‌های آموزشی نوین</span>
                 </div>
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                  <span className="text-gray-700">Global recognition for educational excellence</span>
+                  <span className="text-gray-700">شناخت و اعتبار ملی و منطقه‌ای برای کیفیت آموزش</span>
                 </div>
               </div>
             </div>
@@ -304,10 +295,10 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
-              Meet Our Leadership Team
+              با تیم رهبری ما آشنا شوید
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Dedicated professionals committed to educational excellence and innovation
+              متخصصان متعهدی که به سرآمدی و نوآوری آموزشی پایبند هستند
             </p>
           </div>
           
@@ -337,17 +328,17 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto space-y-8">
             <h2 className="text-3xl lg:text-4xl font-bold">
-              Join Our Legacy of Excellence
+              به میراث سرآمدی ما بپیوندید
             </h2>
             <p className="text-xl text-blue-100">
-              Become part of a community that's shaping the future of education and building real careers.
+              عضوی از جامعه‌ای شوید که آینده آموزش را شکل می‌دهد و مسیرهای شغلی واقعی می‌سازد.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-yellow-400 hover:bg-yellow-300 text-blue-900 px-8 py-3 rounded-lg font-semibold transition-colors">
-                Explore Our Programs
+                مشاهده برنامه‌های ما
               </button>
               <button className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3 rounded-lg font-semibold transition-colors">
-                Schedule a Visit
+                تنظیم زمان بازدید
               </button>
             </div>
           </div>

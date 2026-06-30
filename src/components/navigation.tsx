@@ -49,7 +49,7 @@ const Navigation = () => {
           <Link href="/" className="flex items-center">
             <Image
               src="/images/logo.png"
-              alt="Jahat Logo"
+              alt="لوگوی جهت"
               width={261}
               height={59}
               className="w-54"
@@ -105,12 +105,12 @@ const Navigation = () => {
             <SheetTrigger asChild className="md:hidden">
               <Button variant="ghost" size="icon">
                 <Menu className="h-6 w-6" />
-                <span className="sr-only">Toggle menu</span>
+                <span className="sr-only">تغییر وضعیت منو</span>
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="w-75 sm:w-100 px-4">
               <SheetHeader>
-                <SheetTitle>Menu</SheetTitle>
+                <SheetTitle>منو</SheetTitle>
               </SheetHeader>
               <div className="flex flex-col space-y-4 mt-8">
                 {navItems.map((item) => {

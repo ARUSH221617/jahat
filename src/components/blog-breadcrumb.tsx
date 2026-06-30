@@ -39,7 +39,7 @@ export function BlogBreadcrumb({ items }: BreadcrumbProps) {
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
-              <Link href="/">Home</Link>
+              <Link href="/">خانه</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
