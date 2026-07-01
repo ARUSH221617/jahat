@@ -51,7 +51,9 @@ export interface Contact {
   /** Name of the sender. */
   name: string;
   /** Email of the sender. */
-  email: string;
+  email?: string | null;
+  /** Phone of the sender. */
+  phone?: string;
   /** Subject of the message. */
   subject: string;
   /** Content of the message. */

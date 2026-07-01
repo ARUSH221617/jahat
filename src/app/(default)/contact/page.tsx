@@ -13,6 +13,7 @@ export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     subject: "",
     message: ""
   });
@@ -45,7 +46,7 @@ export default function ContactPage() {
           title: "پیام با موفقیت ارسال شد!",
           description: "ما ظرف ۲۴ ساعت آینده با شما تماس خواهیم گرفت.",
         });
-        setFormData({ name: "", email: "", subject: "", message: "" });
+        setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
       } else {
         throw new Error('Failed to send message');
       }
@@ -63,14 +64,14 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 to-indigo-100 py-20 lg:py-32">
+      <section className="relative bg-gradient-to-br from-primary/5 via-primary/10 to-background pt-32 pb-20 lg:pt-40 lg:pb-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-8">
             <div className="space-y-4">
-              <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-4xl lg:text-6xl font-bold text-foreground leading-tight">
                 ارتباط با ما
               </h1>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 ما اینجا هستیم تا به شما در طول مسیر آموزشی‌تان کمک کنیم. برای هرگونه سوال، پشتیبانی یا اطلاعات درباره برنامه‌های ما با ما تماس بگیرید.
               </p>
             </div>
@@ -79,20 +80,20 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Content */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Contact Form */}
             <div className="lg:col-span-2">
-              <Card className="shadow-lg">
+              <Card className="shadow-lg border-border/40 bg-card text-card-foreground">
                 <CardHeader>
-                  <CardTitle className="text-2xl text-gray-900">ارسال پیام به ما</CardTitle>
+                  <CardTitle className="text-2xl text-foreground font-bold">ارسال پیام به ما</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                       <div className="space-y-2">
-                        <Label htmlFor="name" className="text-gray-700 font-medium">
+                        <Label htmlFor="name" className="text-foreground font-medium">
                           نام و نام خانوادگی *
                         </Label>
                         <Input
@@ -103,11 +104,11 @@ export default function ContactPage() {
                           onChange={handleInputChange}
                           required
                           placeholder="مثال: علی رضایی"
-                          className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                          className="border-border bg-background focus:border-primary focus:ring-primary"
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="email" className="text-gray-700 font-medium">
+                        <Label htmlFor="email" className="text-foreground font-medium">
                           آدرس ایمیل *
                         </Label>
                         <Input
@@ -118,13 +119,27 @@ export default function ContactPage() {
                           onChange={handleInputChange}
                           required
                           placeholder="example@gmail.com"
-                          className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                          className="border-border bg-background focus:border-primary focus:ring-primary"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="phone" className="text-foreground font-medium">
+                          شماره تلفن
+                        </Label>
+                        <Input
+                          id="phone"
+                          name="phone"
+                          type="tel"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          placeholder="مثال: ۰۹۱۲۳۴۵۶۷۸۹"
+                          className="border-border bg-background focus:border-primary focus:ring-primary"
                         />
                       </div>
                     </div>
                     
                     <div className="space-y-2">
-                      <Label htmlFor="subject" className="text-gray-700 font-medium">
+                      <Label htmlFor="subject" className="text-foreground font-medium">
                         موضوع پیام *
                       </Label>
                       <Input
@@ -135,12 +150,12 @@ export default function ContactPage() {
                         onChange={handleInputChange}
                         required
                         placeholder="چگونه می‌توانیم به شما کمک کنیم؟"
-                        className="border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                        className="border-border bg-background focus:border-primary focus:ring-primary"
                       />
                     </div>
                     
                     <div className="space-y-2">
-                      <Label htmlFor="message" className="text-gray-700 font-medium">
+                      <Label htmlFor="message" className="text-foreground font-medium">
                         متن پیام *
                       </Label>
                       <Textarea
@@ -151,14 +166,14 @@ export default function ContactPage() {
                         required
                         placeholder="جزئیات پیام خود را اینجا بنویسید..."
                         rows={6}
-                        className="border-gray-300 focus:border-blue-500 focus:ring-blue-500 resize-none"
+                        className="border-border bg-background focus:border-primary focus:ring-primary resize-none"
                       />
                     </div>
                     
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 text-lg font-medium"
+                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3 text-lg font-medium cursor-pointer"
                     >
                       {isSubmitting ? (
                         <div className="flex items-center gap-2">
@@ -180,44 +195,44 @@ export default function ContactPage() {
             {/* Contact Information */}
             <div className="space-y-6">
               {/* Contact Details */}
-              <Card className="shadow-lg">
+              <Card className="shadow-lg border-border/40 bg-card text-card-foreground">
                 <CardHeader>
-                  <CardTitle className="text-xl text-gray-900">اطلاعات تماس</CardTitle>
+                  <CardTitle className="text-xl text-foreground font-bold">اطلاعات تماس</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="flex items-start gap-3">
-                    <MapPin className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <MapPin className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                     <div>
-                      <p className="font-medium text-gray-900">آدرس</p>
-                      <p className="text-gray-600 text-sm">
+                      <p className="font-medium text-foreground">آدرس</p>
+                      <p className="text-muted-foreground text-sm">
                         خرمشهر، خوزستان، خیابان امام خمینی، مؤسسه آموزشی جهت
                       </p>
                     </div>
                   </div>
                   
                   <div className="flex items-start gap-3">
-                    <Phone className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <Phone className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                     <div>
-                      <p className="font-medium text-gray-900">تلفن تماس</p>
-                      <p className="text-gray-600 text-sm" dir="ltr">+۹۸ ۶۱ ۲۳۴۵ ۶۷۸۹</p>
-                      <p className="text-gray-600 text-sm" dir="ltr">+۹۸ ۶۱ ۲۳۴۵ ۶۷۹۰</p>
+                      <p className="font-medium text-foreground">تلفن تماس</p>
+                      <p className="text-muted-foreground text-sm" dir="ltr">+۹۸ ۶۱ ۲۳۴۵ ۶۷۸۹</p>
+                      <p className="text-muted-foreground text-sm" dir="ltr">+۹۸ ۶۱ ۲۳۴۵ ۶۷۹۰</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start gap-3">
-                    <Mail className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <Mail className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                     <div>
-                      <p className="font-medium text-gray-900">ایمیل</p>
-                      <p className="text-gray-600 text-sm">info@jahatintl.com</p>
-                      <p className="text-gray-600 text-sm">support@jahatintl.com</p>
+                      <p className="font-medium text-foreground">ایمیل</p>
+                      <p className="text-muted-foreground text-sm">info@jahatintl.com</p>
+                      <p className="text-muted-foreground text-sm">support@jahatintl.com</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start gap-3">
-                    <Clock className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <Clock className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
                     <div>
-                      <p className="font-medium text-gray-900">ساعات کاری</p>
-                      <p className="text-gray-600 text-sm">
+                      <p className="font-medium text-foreground">ساعات کاری</p>
+                      <p className="text-muted-foreground text-sm">
                         شنبه تا چهارشنبه: ۸:۰۰ صبح تا ۴:۰۰ بعد از ظهر<br />
                         پنج‌شنبه: ۸:۰۰ صبح تا ۲:۰۰ بعد از ظهر<br />
                         جمعه: تعطیل
@@ -228,25 +243,25 @@ export default function ContactPage() {
               </Card>
 
               {/* Social Media */}
-              <Card className="shadow-lg">
+              <Card className="shadow-lg border-border/40 bg-card text-card-foreground">
                 <CardHeader>
-                  <CardTitle className="text-xl text-gray-900">ما را دنبال کنید</CardTitle>
+                  <CardTitle className="text-xl text-foreground font-bold">ما را دنبال کنید</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-600 mb-4">
+                  <p className="text-muted-foreground mb-4">
                     برای مطلع شدن از آخرین اخبار و به‌روزرسانی‌ها، ما را در شبکه‌های اجتماعی دنبال کنید.
                   </p>
                   <div className="flex gap-3">
                     <a 
                       href="#" 
-                      className="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full transition-colors"
+                      className="bg-primary hover:bg-primary/90 text-primary-foreground p-3 rounded-full transition-colors"
                       aria-label="Facebook"
                     >
                       <Facebook className="h-5 w-5" />
                     </a>
                     <a 
                       href="#" 
-                      className="bg-blue-400 hover:bg-blue-500 text-white p-3 rounded-full transition-colors"
+                      className="bg-sky-500 hover:bg-sky-600 text-white p-3 rounded-full transition-colors"
                       aria-label="Twitter"
                     >
                       <Twitter className="h-5 w-5" />
@@ -260,7 +275,7 @@ export default function ContactPage() {
                     </a>
                     <a 
                       href="#" 
-                      className="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full transition-colors"
+                      className="bg-emerald-600 hover:bg-emerald-700 text-white p-3 rounded-full transition-colors"
                       aria-label="Message"
                     >
                       <MessageCircle className="h-5 w-5" />
@@ -274,13 +289,13 @@ export default function ContactPage() {
       </section>
 
       {/* Map Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
               موقعیت ما روی نقشه
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               از پردیس ما در خرمشهر، خوزستان بازدید کنید
             </p>
           </div>
@@ -301,50 +316,50 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
               پرسش‌های متداول
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               پاسخ‌های سریع به سوالات متداول درباره جهت
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Card className="p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+            <Card className="p-6 border-border/40 bg-card text-card-foreground">
+              <h3 className="text-lg font-semibold text-foreground mb-2">
                 چگونه در یک دوره ثبت‌نام کنم؟
               </h3>
-              <p className="text-gray-600">
+              <p className="text-muted-foreground">
                 شما می‌توانید به صورت آنلاین با مراجعه به صفحه دوره‌ها، دوره مورد نظر خود را انتخاب کرده و ثبت‌نام کنید. همچنین می‌توانید برای ثبت‌نام حضوری به پردیس ما مراجعه کنید.
               </p>
             </Card>
             
-            <Card className="p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+            <Card className="p-6 border-border/40 bg-card text-card-foreground">
+              <h3 className="text-lg font-semibold text-foreground mb-2">
                 شرایط پذیرش چیست؟
               </h3>
-              <p className="text-gray-600">
+              <p className="text-muted-foreground">
                 شرایط ثبت‌نام بسته به هر دوره متفاوت است. به طور کلی، علاقه به یادگیری و پیش‌نیازهای مهارتی مربوط به هر کلاس الزامی است.
               </p>
             </Card>
             
-            <Card className="p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+            <Card className="p-6 border-border/40 bg-card text-card-foreground">
+              <h3 className="text-lg font-semibold text-foreground mb-2">
                 آیا دوره‌های آنلاین هم ارائه می‌دهید؟
               </h3>
-              <p className="text-gray-600">
+              <p className="text-muted-foreground">
                 بله، ما هم گزینه‌های یادگیری آنلاین و هم ترکیبی (حضوری و آنلاین) را ارائه می‌دهیم. بسیاری از دوره‌ها از طریق سامانه مدیریت یادگیری پیشرفته در دسترس هستند.
               </p>
             </Card>
             
-            <Card className="p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+            <Card className="p-6 border-border/40 bg-card text-card-foreground">
+              <h3 className="text-lg font-semibold text-foreground mb-2">
                 طول مدت دوره‌ها چقدر است؟
               </h3>
-              <p className="text-gray-600">
+              <p className="text-muted-foreground">
                 مدت زمان برنامه‌ها از ۴ هفته برای دوره‌های کوتاه تا زمان‌های طولانی‌تر برای دوره‌های جامع پیشرفته متغیر است. جزئیات دقیق در صفحه هر دوره مشخص شده است.
               </p>
             </Card>

@@ -29,7 +29,7 @@ const Navigation = () => {
 
   const navItems = [
     { href: "/", label: "صفحه اصلی" },
-    { href: "/contact", label: "شیوه مطالعه" },
+    { href: "/contact", label: "ارتباط با ما" },
     { href: "/courses", label: "آموزش ریاضی" },
     { href: "/blog", label: "آموزش رایگان" },
     { href: "/about", label: "ما کی هستیم؟!" },

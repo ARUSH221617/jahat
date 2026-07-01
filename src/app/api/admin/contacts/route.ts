@@ -22,6 +22,7 @@ export async function GET(request: NextRequest) {
           OR: [
             { name: { contains: search } },
             { email: { contains: search } },
+            { phone: { contains: search } },
             { subject: { contains: search } },
             { message: { contains: search } },
           ],

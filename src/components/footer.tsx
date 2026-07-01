@@ -48,11 +48,6 @@ const Footer = () => {
     setIsSubmitting(true);
 
     try {
-      // Create a syntactically valid email format for backend validation compatibility
-      const sanitizedPhone = formData.phone.trim().replace(/\s+/g, "");
-      const emailValue = `${sanitizedPhone}@phone.com`;
-      const enrichedMessage = `شماره تلفن: ${formData.phone}\n\nپیام:\n${formData.message}`;
-
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -60,8 +55,9 @@ const Footer = () => {
         },
         body: JSON.stringify({
           name: formData.name,
-          email: emailValue,
-          message: enrichedMessage,
+          email: "",
+          phone: formData.phone,
+          message: formData.message,
           subject: formData.subject,
         }),
       });
@@ -162,7 +158,7 @@ const Footer = () => {
                 type="submit"
                 disabled={isSubmitting}
                 size={"sm"}
-                className="absolute end-3 top-1/2 -translate-y-1/2 bg-cyan-500 text-white hover:bg-cyan-500/90 transition-all active:scale-[0.98] flex items-center justify-center gap-1.5 px-3 font-semibold drop-shadow-xl drop-shadow-cyan-200 rounded-2xl"
+                className="absolute inset-e-3 top-1/2 -translate-y-1/2 bg-cyan-500 text-white hover:bg-cyan-500/90 transition-all active:scale-[0.98] flex items-center justify-center gap-1.5 px-3 font-semibold drop-shadow-xl drop-shadow-cyan-200 rounded-2xl"
               >
                 {isSubmitting ? (
                   <Loader2 className="h-3.5 w-3.5 animate-spin" />

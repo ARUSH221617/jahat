@@ -52,7 +52,8 @@ model Testimonial {
 model Contact {
   id        String   @id @default(cuid())
   name      String
-  email     String
+  email     String?
+  phone     String?
   message   String
   subject   String   @default("No Subject")
   createdAt DateTime @default(now())

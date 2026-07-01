@@ -79,7 +79,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   };
 
   return (
-    <article className="container py-10 max-w-3xl mx-auto space-y-8">
+    <article className="container pt-32 pb-10 lg:pt-40 lg:pb-16 max-w-3xl mx-auto space-y-8">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

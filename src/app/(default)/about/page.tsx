@@ -94,7 +94,7 @@ export default function AboutPage() {
       />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-50 to-indigo-100 py-20 lg:py-32">
+      <section className="relative bg-gradient-to-br from-blue-50 to-indigo-100 pt-32 pb-20 lg:pt-40 lg:pb-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-8">
             <div className="space-y-4 animate-fade-in">

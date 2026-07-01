@@ -16,6 +16,10 @@ export const columns: ColumnDef<Contact>[] = [
     header: "Email",
   },
   {
+    accessorKey: "phone",
+    header: "Phone",
+  },
+  {
     accessorKey: "subject",
     header: "Subject",
   },

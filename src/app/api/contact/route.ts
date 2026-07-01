@@ -14,13 +14,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { name, email, message, subject } = result.data;
+    const { name, email, phone, message, subject } = result.data;
 
     // Save contact message to database
     const contact = await db.contact.create({
       data: {
         name,
-        email,
+        email: email || null,
+        phone,
         message,
         subject: subject || 'No Subject' // Default to 'No Subject' if not provided
       },

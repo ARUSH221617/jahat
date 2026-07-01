@@ -78,7 +78,7 @@ export default function CourseDetailsPage() {
 
   if (loading) {
     return (
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 pt-32 pb-12 lg:pt-40 lg:pb-12">
         <div className="space-y-6">
           <Skeleton className="h-8 w-1/3" />
           <Skeleton className="h-[400px] w-full rounded-xl" />
@@ -94,7 +94,7 @@ export default function CourseDetailsPage() {
 
   if (error || !course) {
     return (
-      <div className="container mx-auto px-4 py-12 text-center">
+      <div className="container mx-auto px-4 pt-32 pb-12 lg:pt-40 lg:pb-12 text-center">
         <h2 className="text-2xl font-bold text-red-600 mb-4">خطا در بارگذاری دوره</h2>
         <p className="text-gray-600 mb-6">{error || "دوره مورد نظر یافت نشد"}</p>
         <Button onClick={() => router.push('/courses')} variant="outline">
@@ -108,7 +108,7 @@ export default function CourseDetailsPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="bg-gray-900 text-white py-16 lg:py-24">
+      <div className="bg-gray-900 text-white pt-32 pb-16 lg:pt-40 lg:pb-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <Button
             variant="ghost"
