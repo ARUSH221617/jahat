@@ -21,6 +21,9 @@ interface CourseWithInstructor extends Omit<Course, 'instructor'> {
     name: string;
   };
   price: number;
+  currency?: string;
+  categoryId?: string;
+  levelId?: string;
 }
 
 interface CoursesTableProps {
@@ -44,14 +47,23 @@ export const columns: ColumnDef<CourseWithInstructor>[] = [
     cell: ({ row }) => row.original.instructor?.name || "N/A"
   },
   {
+    accessorKey: "category",
+    header: "Category",
+  },
+  {
+    accessorKey: "level",
+    header: "Level",
+  },
+  {
     accessorKey: "price",
     header: "Price",
     cell: ({ row }) => {
       const price = row.original.price || 0;
+      const currency = row.original.currency || "IRR";
+      const displayPrice = currency === "IRT" ? price / 10 : price;
       return (
-        <div className="flex items-center">
-          <DollarSign className="h-4 w-4 mr-1 text-green-500" />
-          {price.toFixed(2)}
+        <div className="font-medium">
+          {displayPrice.toLocaleString()} {currency}
         </div>
       );
     }
@@ -86,14 +98,25 @@ export function getCoursesColumns(onEdit?: (course: CourseWithInstructor) => voi
       render: (course: CourseWithInstructor) => course.instructor?.name || "N/A"
     },
     {
+      key: 'category',
+      title: 'Category',
+      render: (course: CourseWithInstructor) => course.category
+    },
+    {
+      key: 'level',
+      title: 'Level',
+      render: (course: CourseWithInstructor) => course.level
+    },
+    {
       key: 'price',
       title: 'Price',
       render: (course: CourseWithInstructor) => {
         const price = course.price || 0;
+        const currency = course.currency || "IRR";
+        const displayPrice = currency === "IRT" ? price / 10 : price;
         return (
-          <div className="flex items-center">
-            <DollarSign className="h-4 w-4 mr-1 text-green-500" />
-            {price.toFixed(2)}
+          <div className="font-medium">
+            {displayPrice.toLocaleString()} {currency}
           </div>
         );
       }

@@ -3,12 +3,14 @@
 import { useState, useEffect } from "react";
 import { DataTable } from "@/components/admin/data-table";
 import { toast } from "sonner";
-import { GraduationCap, DollarSign, Plus } from "lucide-react";
+import { GraduationCap, Plus } from "lucide-react";
 import { getCoursesColumns, CourseWithInstructor } from "./courses-table";
 import ImageUpload from "@/components/ui/image-upload";
 import { InstructorSelect } from "@/components/ui/instructor-select";
 import Editor from "@/components/ui/editor";
 import { Button } from "@/components/ui/button";
+import { Combobox } from "@/components/ui/combobox";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import {
   Sheet,
   SheetContent,
@@ -28,6 +30,7 @@ export default function CoursesPage() {
   const [editingCourse, setEditingCourse] =
     useState<CourseWithInstructor | null>(null);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
+  
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -35,11 +38,26 @@ export default function CoursesPage() {
     price: "",
     duration: "",
     thumbnail: "",
+    categoryId: "",
+    levelId: "",
   });
+  
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const [instructors, setInstructors] = useState<User[]>([]);
+  const [globalCurrency, setGlobalCurrency] = useState("IRR");
+  
+  const [categories, setCategories] = useState<any[]>([]);
+  const [levels, setLevels] = useState<any[]>([]);
 
-  // Fetch instructors for the form
+  // Category inline creation
+  const [newCatName, setNewCatName] = useState("");
+  const [isCreatingCat, setIsCreatingCat] = useState(false);
+
+  // Level inline creation
+  const [newLevelName, setNewLevelName] = useState("");
+  const [isCreatingLevel, setIsCreatingLevel] = useState(false);
+
+  // Fetch instructors, categories, levels, and settings
   useEffect(() => {
     const fetchInstructors = async () => {
       try {
@@ -53,8 +71,87 @@ export default function CoursesPage() {
       }
     };
 
+    const fetchSettings = async () => {
+      try {
+        const response = await fetch("/api/settings");
+        if (response.ok) {
+          const data = await response.json();
+          if (data.currency) {
+            setGlobalCurrency(data.currency);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching settings:", error);
+      }
+    };
+
+    const fetchCategoriesAndLevels = async () => {
+      try {
+        const [catsRes, levelsRes] = await Promise.all([
+          fetch("/api/admin/product-categories"),
+          fetch("/api/admin/course-levels"),
+        ]);
+        if (catsRes.ok) setCategories(await catsRes.json());
+        if (levelsRes.ok) setLevels(await levelsRes.json());
+      } catch (error) {
+        console.error("Error fetching categories or levels:", error);
+      }
+    };
+
     fetchInstructors();
-  }, []);
+    fetchSettings();
+    fetchCategoriesAndLevels();
+  }, [refreshTrigger]);
+
+  const handleCreateCategory = async () => {
+    if (!newCatName.trim()) return;
+    setIsCreatingCat(true);
+    try {
+      const res = await fetch("/api/admin/product-categories", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: newCatName }),
+      });
+      if (res.ok) {
+        const newCat = await res.json();
+        toast.success("Category created successfully");
+        setCategories((prev) => [...prev, newCat]);
+        setFormData((prev) => ({ ...prev, categoryId: newCat.id }));
+        setNewCatName("");
+      } else {
+        toast.error("Failed to create category");
+      }
+    } catch (e) {
+      toast.error("Error creating category");
+    } finally {
+      setIsCreatingCat(false);
+    }
+  };
+
+  const handleCreateLevel = async () => {
+    if (!newLevelName.trim()) return;
+    setIsCreatingLevel(true);
+    try {
+      const res = await fetch("/api/admin/course-levels", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: newLevelName }),
+      });
+      if (res.ok) {
+        const newLvl = await res.json();
+        toast.success("Level created successfully");
+        setLevels((prev) => [...prev, newLvl]);
+        setFormData((prev) => ({ ...prev, levelId: newLvl.id }));
+        setNewLevelName("");
+      } else {
+        toast.error("Failed to create level");
+      }
+    } catch (e) {
+      toast.error("Error creating level");
+    } finally {
+      setIsCreatingLevel(false);
+    }
+  };
 
   const fetchCourses = async ({
     page,
@@ -93,6 +190,14 @@ export default function CoursesPage() {
       errors.price = "Price must be a valid number";
     }
 
+    if (!formData.categoryId) {
+      errors.categoryId = "Category is required";
+    }
+
+    if (!formData.levelId) {
+      errors.levelId = "Level is required";
+    }
+
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -106,7 +211,7 @@ export default function CoursesPage() {
 
     try {
       const method = editingCourse ? "PUT" : "POST";
-      const url = editingCourse ? `/api/admin/courses` : `/api/admin/courses`;
+      const url = "/api/admin/courses";
 
       const bodyData = editingCourse
         ? {
@@ -154,6 +259,8 @@ export default function CoursesPage() {
       price: "",
       duration: "",
       thumbnail: "",
+      categoryId: "",
+      levelId: "",
     });
     setFormErrors({});
     setShowAddModal(true);
@@ -168,6 +275,8 @@ export default function CoursesPage() {
       price: course.price.toString(),
       duration: course.duration,
       thumbnail: course.thumbnail || "",
+      categoryId: course.categoryId || "",
+      levelId: course.levelId || "",
     });
     setShowAddModal(true);
   };
@@ -180,6 +289,7 @@ export default function CoursesPage() {
 
       if (response.ok) {
         toast.success("Course deleted successfully");
+        setRefreshTrigger((prev) => prev + 1);
         return Promise.resolve();
       } else {
         const result = await response.json();
@@ -204,6 +314,8 @@ export default function CoursesPage() {
         price: "",
         duration: "",
         thumbnail: "",
+        categoryId: "",
+        levelId: "",
       });
       setFormErrors({});
     }
@@ -296,21 +408,24 @@ export default function CoursesPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    Price
+                    Price (IRR / ریال)
                   </label>
-                  <div className="relative">
-                    <DollarSign className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                    <input
-                      type="number"
-                      value={formData.price}
-                      onChange={(e) =>
-                        setFormData({ ...formData, price: e.target.value })
-                      }
-                      className="w-full p-2 pl-8 border border-gray-300 rounded"
-                      placeholder="0.00"
-                      step="0.01"
-                    />
-                  </div>
+                  <input
+                    type="number"
+                    value={formData.price}
+                    onChange={(e) =>
+                      setFormData({ ...formData, price: e.target.value })
+                    }
+                    className="w-full p-2 border border-gray-300 rounded bg-background"
+                    placeholder="0"
+                    min="0"
+                    step="1"
+                  />
+                  {formData.price && !isNaN(parseFloat(formData.price)) && globalCurrency === "IRT" && (
+                    <p className="text-xs text-slate-500 mt-1">
+                      Equivalent: {(parseFloat(formData.price) / 10).toLocaleString()} تومان
+                    </p>
+                  )}
                   {formErrors.price && (
                     <p className="text-red-500 text-sm mt-1">
                       {formErrors.price}
@@ -320,18 +435,113 @@ export default function CoursesPage() {
 
                 <div>
                   <label className="block text-sm font-medium mb-1">
-                    Duration (minutes)
+                    Duration
                   </label>
                   <input
-                    type="number"
+                    type="text"
                     value={formData.duration}
                     onChange={(e) =>
                       setFormData({ ...formData, duration: e.target.value })
                     }
                     className="w-full p-2 border border-gray-300 rounded"
-                    placeholder="e.g., 60"
-                    min="0"
+                    placeholder="e.g., 6 weeks, 40 hours"
                   />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium mb-1">
+                    Category (دسته‌بندی)
+                  </label>
+                  <div className="flex items-center gap-1">
+                    <div className="flex-1">
+                      <Combobox
+                        options={categories.map((c) => ({ label: c.name, value: c.id }))}
+                        value={formData.categoryId}
+                        onChange={(val) => setFormData({ ...formData, categoryId: val })}
+                        placeholder="Select category..."
+                      />
+                    </div>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button type="button" variant="outline" size="icon">
+                          <Plus className="h-4 w-4" />
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-64 p-3 space-y-2">
+                        <label className="text-xs font-semibold">New Category</label>
+                        <input
+                          type="text"
+                          className="w-full p-1 text-sm border rounded bg-background"
+                          value={newCatName}
+                          onChange={(e) => setNewCatName(e.target.value)}
+                          placeholder="e.g., ریاضی متوسطه"
+                        />
+                        <Button
+                          type="button"
+                          className="w-full text-xs h-7"
+                          size="sm"
+                          onClick={handleCreateCategory}
+                          disabled={isCreatingCat}
+                        >
+                          {isCreatingCat ? "Creating..." : "Create"}
+                        </Button>
+                      </PopoverContent>
+                    </Popover>
+                  </div>
+                  {formErrors.categoryId && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {formErrors.categoryId}
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-1">
+                    Level (سطح / پایه)
+                  </label>
+                  <div className="flex items-center gap-1">
+                    <div className="flex-1">
+                      <Combobox
+                        options={levels.map((l) => ({ label: l.name, value: l.id }))}
+                        value={formData.levelId}
+                        onChange={(val) => setFormData({ ...formData, levelId: val })}
+                        placeholder="Select level..."
+                      />
+                    </div>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button type="button" variant="outline" size="icon">
+                          <Plus className="h-4 w-4" />
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-64 p-3 space-y-2">
+                        <label className="text-xs font-semibold">New Level</label>
+                        <input
+                          type="text"
+                          className="w-full p-1 text-sm border rounded bg-background"
+                          value={newLevelName}
+                          onChange={(e) => setNewLevelName(e.target.value)}
+                          placeholder="e.g., کلاس هفتم"
+                        />
+                        <Button
+                          type="button"
+                          className="w-full text-xs h-7"
+                          size="sm"
+                          onClick={handleCreateLevel}
+                          disabled={isCreatingLevel}
+                        >
+                          {isCreatingLevel ? "Creating..." : "Create"}
+                        </Button>
+                      </PopoverContent>
+                    </Popover>
+                  </div>
+                  {formErrors.levelId && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {formErrors.levelId}
+                    </p>
+                  )}
                 </div>
               </div>
 

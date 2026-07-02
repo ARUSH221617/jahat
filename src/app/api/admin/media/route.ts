@@ -26,14 +26,25 @@ export async function GET(request: NextRequest) {
     // 2. Fetch all DB data relevant to media usage
     // Note: We fetch all because we need to check if ANY record uses the blobs on THIS page.
     // In a massive system, we would have a 'Media' table with relations, but here we scan.
-    const courses = await db.course.findMany({
+    const rawCourses = await db.course.findMany({
       select: {
         id: true,
-        title: true,
-        thumbnail: true,
-        description: true,
+        product: {
+          select: {
+            title: true,
+            thumbnail: true,
+            description: true,
+          }
+        }
       },
     });
+
+    const courses = rawCourses.map(c => ({
+      id: c.id,
+      title: c.product.title,
+      thumbnail: c.product.thumbnail,
+      description: c.product.description,
+    }));
 
     const testimonials = await db.testimonial.findMany({
       select: {

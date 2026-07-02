@@ -21,21 +21,82 @@ model User {
   posts        Post[]
 }
 
+model Product {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  price       Float    @default(0)
+  thumbnail   String
+  type        String   // "COURSE", "BOOK", "PODCAST", "BUNDLE"
+  popularity  Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  categories  ProductCategory[]
+  tags        ProductTag[]
+
+  courses     Course[]
+  books       Book[]
+  podcasts    Podcast[]
+
+  // Self-relation for bundles
+  bundleItems Product[] @relation("ProductBundles")
+  bundles     Product[] @relation("ProductBundles")
+}
+
 model Course {
   id            String   @id @default(cuid())
-  title         String
-  description   String
-  category      String
-  level         String
   duration      String
-  thumbnail     String
-  price         Float    @default(0)
   instructorId  String
-  popularity    Int      @default(0)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  levelId       String
+  productId     String
 
-  instructor    User      @relation(fields: [instructorId], references: [id])
+  product       Product      @relation(fields: [productId], references: [id], onDelete: Cascade)
+  instructor    User         @relation(fields: [instructorId], references: [id])
+  level         CourseLevel  @relation(fields: [levelId], references: [id])
+}
+
+model Book {
+  id            String   @id @default(cuid())
+  author        String?
+  pages         Int?
+  pdfUrl        String?
+  productId     String
+  
+  product       Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model Podcast {
+  id            String   @id @default(cuid())
+  host          String?
+  episodes      Int?
+  audioUrl      String?
+  productId     String
+  
+  product       Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+}
+
+model ProductCategory {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  description String?
+  products    Product[]
+}
+
+model ProductTag {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  products    Product[]
+}
+
+model CourseLevel {
+  id          String    @id @default(cuid())
+  name        String
+  slug        String    @unique
+  description String?
+  courses     Course[]
 }
 
 

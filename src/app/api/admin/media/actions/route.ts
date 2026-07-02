@@ -126,8 +126,8 @@ export async function POST(request: Request) {
 }
 
 async function updateDatabaseReferences(oldUrl: string, newUrl: string) {
-  // Update Course Thumbnails
-  await db.course.updateMany({
+  // Update Product Thumbnails (covers courses and other products)
+  await db.product.updateMany({
     where: { thumbnail: oldUrl },
     data: { thumbnail: newUrl },
   });
@@ -141,15 +141,15 @@ async function updateDatabaseReferences(oldUrl: string, newUrl: string) {
   // For rich text fields, we need to fetch, replace, and update.
   // This is potentially slow but necessary for exact replacement.
 
-  // Courses Description
-  const coursesWithDesc = await db.course.findMany({
+  // Products Description (covers courses and other products)
+  const productsWithDesc = await db.product.findMany({
     where: { description: { contains: oldUrl } },
   });
 
-  for (const course of coursesWithDesc) {
-    const newDesc = course.description.replaceAll(oldUrl, newUrl);
-    await db.course.update({
-      where: { id: course.id },
+  for (const product of productsWithDesc) {
+    const newDesc = product.description.replaceAll(oldUrl, newUrl);
+    await db.product.update({
+      where: { id: product.id },
       data: { description: newDesc },
     });
   }

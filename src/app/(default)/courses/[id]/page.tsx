@@ -15,6 +15,7 @@ interface Course {
   duration: string;
   thumbnail: string;
   price: number;
+  currency?: string;
   instructor: {
     name: string;
   };
@@ -178,7 +179,9 @@ export default function CourseDetailsPage() {
                 />
                 <div className="p-8">
                   <div className="text-3xl font-bold text-gray-900 mb-6">
-                    {course.price} دلار
+                    {course.currency === 'IRT' 
+                      ? (course.price / 10).toLocaleString() + ' تومان' 
+                      : course.price.toLocaleString() + ' ریال'}
                   </div>
                   <Button className="w-full text-lg py-6 bg-blue-600 hover:bg-blue-700 mb-4">
                     ثبت‌نام در دوره

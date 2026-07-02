@@ -27,13 +27,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const courses = await db.course.findMany({
       select: {
         id: true,
-        updatedAt: true,
+        product: {
+          select: {
+            updatedAt: true,
+          }
+        },
       },
     })
 
     courseRoutes = courses.map((course) => ({
       url: `${baseUrl}/courses/${course.id}`,
-      lastModified: course.updatedAt,
+      lastModified: course.product.updatedAt,
       changeFrequency: 'weekly' as const,
       priority: 0.6,
     }))

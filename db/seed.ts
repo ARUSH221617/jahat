@@ -35,12 +35,53 @@ async function main() {
   // Create sample courses
   // Helper to upsert course (checking by title and instructor)
   const upsertCourse = async (data: any) => {
-    // Since we don't have a unique field for course other than ID, we can check if one exists with the same title
-    const existing = await db.course.findFirst({
-      where: { title: data.title },
+    // 1. Get or create ProductCategory
+    const categorySlug = data.category.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    const category = await db.productCategory.upsert({
+      where: { slug: categorySlug },
+      update: {},
+      create: { name: data.category, slug: categorySlug },
     });
-    if (existing) return existing;
-    return await db.course.create({ data });
+
+    // 2. Get or create CourseLevel
+    const levelSlug = data.level.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    const level = await db.courseLevel.upsert({
+      where: { slug: levelSlug },
+      update: {},
+      create: { name: data.level, slug: levelSlug },
+    });
+
+    // 3. Check if product already exists
+    const existingProduct = await db.product.findFirst({
+      where: { title: data.title, type: "COURSE" },
+      include: { courses: true }
+    });
+
+    if (existingProduct && existingProduct.courses.length > 0) {
+      return existingProduct.courses[0];
+    }
+
+    // 4. Create Product
+    const product = await db.product.create({
+      data: {
+        title: data.title,
+        description: data.description,
+        price: data.price || 0,
+        thumbnail: data.thumbnail,
+        type: "COURSE",
+        categories: { connect: { id: category.id } },
+      }
+    });
+
+    // 5. Create Course subtype
+    return await db.course.create({
+      data: {
+        duration: data.duration,
+        instructorId: data.instructorId,
+        levelId: level.id,
+        productId: product.id,
+      }
+    });
   };
 
   const courses = await Promise.all([
@@ -53,6 +94,7 @@ async function main() {
       duration: "6 weeks",
       instructorId: instructor1.id,
       thumbnail: "/api/placeholder/300/200",
+      price: 2500000, // 2,500,000 Rials (250,000 Tomans)
     }),
     upsertCourse({
       title: "Educational Psychology",
@@ -63,6 +105,7 @@ async function main() {
       duration: "8 weeks",
       instructorId: instructor2.id,
       thumbnail: "/api/placeholder/300/200",
+      price: 3200000,
     }),
     upsertCourse({
       title: "Classroom Management",
@@ -73,6 +116,7 @@ async function main() {
       duration: "4 weeks",
       instructorId: instructor3.id,
       thumbnail: "/api/placeholder/300/200",
+      price: 1800000,
     }),
     upsertCourse({
       title: "Digital Literacy in Education",
@@ -83,6 +127,7 @@ async function main() {
       duration: "5 weeks",
       instructorId: instructor4.id,
       thumbnail: "/api/placeholder/300/200",
+      price: 2200000,
     }),
     upsertCourse({
       title: "Curriculum Development",
@@ -93,10 +138,66 @@ async function main() {
       duration: "10 weeks",
       instructorId: instructor5.id,
       thumbnail: "/api/placeholder/300/200",
+      price: 3500000,
     }),
   ]);
 
   console.log("Upserted courses count:", courses.length);
+
+  // Seed sample Books and Podcasts
+  const bookCount = await db.product.count({ where: { type: "BOOK" } });
+  if (bookCount === 0) {
+    const bookCategory = await db.productCategory.upsert({
+      where: { slug: "educational-books" },
+      update: {},
+      create: { name: "Educational Books", slug: "educational-books" }
+    });
+
+    const book1 = await db.product.create({
+      data: {
+        title: "The Art of Teaching",
+        description: "A comprehensive guide on modern teaching techniques and classroom methodologies.",
+        price: 1500000, // 1,500,000 Rials (150,000 Tomans)
+        thumbnail: "/api/placeholder/300/200",
+        type: "BOOK",
+        categories: { connect: { id: bookCategory.id } },
+        books: {
+          create: {
+            author: "Dr. Sarah Johnson",
+            pages: 280,
+          }
+        }
+      }
+    });
+    console.log("Created sample book:", book1.title);
+  }
+
+  const podcastCount = await db.product.count({ where: { type: "PODCAST" } });
+  if (podcastCount === 0) {
+    const podcastCategory = await db.productCategory.upsert({
+      where: { slug: "education-podcasts" },
+      update: {},
+      create: { name: "Education Podcasts", slug: "education-podcasts" }
+    });
+
+    const podcast1 = await db.product.create({
+      data: {
+        title: "Jahat Education Talk #1",
+        description: "In this episode, we talk about the role of technology and AI in future schools.",
+        price: 0, // Free
+        thumbnail: "/api/placeholder/300/200",
+        type: "PODCAST",
+        categories: { connect: { id: podcastCategory.id } },
+        podcasts: {
+          create: {
+            host: "Prof. Michael Chen",
+            episodes: 1,
+          }
+        }
+      }
+    });
+    console.log("Created sample podcast:", podcast1.title);
+  }
 
 
   // Create sample testimonials

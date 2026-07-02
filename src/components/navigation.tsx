@@ -29,10 +29,11 @@ const Navigation = () => {
 
   const navItems = [
     { href: "/", label: "صفحه اصلی" },
-    { href: "/contact", label: "ارتباط با ما" },
     { href: "/courses", label: "آموزش ریاضی" },
+    { href: "/products", label: "محصولات" },
     { href: "/blog", label: "آموزش رایگان" },
     { href: "/about", label: "ما کی هستیم؟!" },
+    { href: "/contact", label: "ارتباط با ما" },
   ];
 
   return (

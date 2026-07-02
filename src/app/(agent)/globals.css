@@ -1,6 +1,54 @@
 @import "tailwindcss";
 @import "katex/dist/katex.min.css";
 
+@font-face {
+  font-family: 'IRANSans';
+  src: url('/fonts/iransans/woff2/IRANSansWeb(FaNum).woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IRANSans';
+  src: url('/fonts/iransans/woff2/IRANSansWeb(FaNum)_Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IRANSans';
+  src: url('/fonts/iransans/woff2/IRANSansWeb(FaNum)_Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IRANSans';
+  src: url('/fonts/iransans/woff2/IRANSansWeb(FaNum)_Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IRANSans';
+  src: url('/fonts/iransans/woff2/IRANSansWeb(FaNum)_UltraLight.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'IRANSans';
+  src: url('/fonts/iransans/woff2/IRANSansWeb(FaNum)_Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* include utility classes in streamdown */
 @source '../node_modules/streamdown/dist/index.js';
 
@@ -89,7 +137,7 @@
 
 /* define theme */
 @theme {
-  --font-sans: var(--font-geist);
+  --font-sans: IRANSans, var(--font-geist), sans-serif;
   --font-mono: var(--font-geist-mono);
 
   --breakpoint-toast-mobile: 600px;

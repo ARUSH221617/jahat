@@ -16,12 +16,16 @@ export async function GET(request: NextRequest) {
       totalUsers,
       totalCourses,
       totalCertificates,
+      totalBooks,
+      totalPodcasts,
       recentUsers,
       recentCourses
     ] = await Promise.all([
       db.user.count(),
       db.course.count(),
       db.certificate.count(),
+      db.book.count(),
+      db.podcast.count(),
       db.user.findMany({
         take: 3,
         orderBy: { createdAt: 'desc' },
@@ -29,10 +33,28 @@ export async function GET(request: NextRequest) {
       }),
       db.course.findMany({
         take: 3,
-        orderBy: { createdAt: 'desc' },
-        select: { id: true, title: true, instructor: { select: { name: true } }, createdAt: true }
+        orderBy: { product: { createdAt: 'desc' } },
+        select: {
+          id: true,
+          product: {
+            select: {
+              title: true,
+              createdAt: true
+            }
+          },
+          instructor: {
+            select: { name: true }
+          }
+        }
       })
     ]);
+
+    const recentCoursesMapped = recentCourses.map(c => ({
+      id: c.id,
+      title: c.product.title,
+      instructor: c.instructor,
+      createdAt: c.product.createdAt,
+    }));
 
     return new Response(
       JSON.stringify({
@@ -40,17 +62,19 @@ export async function GET(request: NextRequest) {
           totalUsers,
           totalCourses,
           totalCertificates,
+          totalBooks,
+          totalPodcasts,
         },
         recent: {
           users: recentUsers,
-          courses: recentCourses,
+          courses: recentCoursesMapped,
         },
       }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
   } catch (error) {
     console.error('Error fetching dashboard data:', error);
-    return new Response(JSON.stringify({ error: 'Failed to fetch dashboard data' }), {
+    return new Response(JSON.stringify({ error: 'Failed to load dashboard data' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });

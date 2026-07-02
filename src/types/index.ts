@@ -20,6 +20,14 @@ export interface Course {
   instructor: string;
   /** URL to the course thumbnail image. */
   thumbnail?: string;
+  /** Price of the course in IRR. */
+  price?: number;
+  /** Display currency. */
+  currency?: string;
+  /** Foreign key to Product. */
+  productId?: string;
+  /** Foreign key to CourseLevel. */
+  levelId?: string;
   /** ISO timestamp of creation. */
   createdAt: string;
   /** ISO timestamp of last update. */
@@ -83,4 +91,72 @@ export interface Testimonial {
   createdAt: string;
   /** ISO timestamp of last update. */
   updatedAt: string;
+}
+
+/**
+ * Represents a ProductCategory.
+ */
+export interface ProductCategory {
+  id: string;
+  name: string;
+  slug: string;
+  description?: string | null;
+}
+
+/**
+ * Represents a ProductTag.
+ */
+export interface ProductTag {
+  id: string;
+  name: string;
+  slug: string;
+}
+
+/**
+ * Represents a CourseLevel.
+ */
+export interface CourseLevel {
+  id: string;
+  name: string;
+  slug: string;
+  description?: string | null;
+}
+
+/**
+ * Represents a generic Product.
+ */
+export interface Product {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  thumbnail: string;
+  type: "COURSE" | "BOOK" | "PODCAST" | "BUNDLE";
+  popularity: number;
+  createdAt: string;
+  updatedAt: string;
+  categories?: ProductCategory[];
+  tags?: ProductTag[];
+}
+
+/**
+ * Represents a Book subtype.
+ */
+export interface Book {
+  id: string;
+  author?: string | null;
+  pages?: number | null;
+  productId: string;
+  product?: Product;
+}
+
+/**
+ * Represents a Podcast subtype.
+ */
+export interface Podcast {
+  id: string;
+  host?: string | null;
+  episodes?: number | null;
+  productId: string;
+  product?: Product;
 }

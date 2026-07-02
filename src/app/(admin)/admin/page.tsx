@@ -13,7 +13,9 @@ import {
   BarChart3,
   TrendingUp,
   UserPlus,
-  FileText
+  FileText,
+  BookOpen,
+  Headphones
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -22,6 +24,8 @@ interface DashboardData {
     totalUsers: number;
     totalCourses: number;
     totalCertificates: number;
+    totalBooks?: number;
+    totalPodcasts?: number;
   };
   recent: {
     users: Array<{
@@ -87,7 +91,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium">Total Users</CardTitle>
@@ -95,7 +99,7 @@ export default function AdminDashboard() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{dashboardData?.stats.totalUsers || 0}</div>
-            <p className="text-xs text-gray-500">Active users on platform</p>
+            <p className="text-xs text-gray-500">Active users</p>
           </CardContent>
         </Card>
 
@@ -112,7 +116,29 @@ export default function AdminDashboard() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Certificates Issued</CardTitle>
+            <CardTitle className="text-sm font-medium">Total Books</CardTitle>
+            <BookOpen className="h-5 w-5 text-emerald-500" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{dashboardData?.stats.totalBooks || 0}</div>
+            <p className="text-xs text-gray-500">Available books</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">Total Podcasts</CardTitle>
+            <Headphones className="h-5 w-5 text-[#219ebc]" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{dashboardData?.stats.totalPodcasts || 0}</div>
+            <p className="text-xs text-gray-500">Available podcasts</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">Certificates</CardTitle>
             <Award className="h-5 w-5 text-purple-500" />
           </CardHeader>
           <CardContent>
@@ -191,28 +217,40 @@ export default function AdminDashboard() {
           <CardDescription>Manage different sections of your platform</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             <Link href="/admin/users">
               <Button variant="outline" className="w-full h-auto py-6 flex flex-col items-center">
-                <Users className="h-6 w-6 mb-2" />
+                <Users className="h-6 w-6 mb-2 text-blue-500" />
                 <span>Manage Users</span>
               </Button>
             </Link>
             <Link href="/admin/courses">
               <Button variant="outline" className="w-full h-auto py-6 flex flex-col items-center">
-                <GraduationCap className="h-6 w-6 mb-2" />
+                <GraduationCap className="h-6 w-6 mb-2 text-green-500" />
                 <span>Manage Courses</span>
+              </Button>
+            </Link>
+            <Link href="/admin/books">
+              <Button variant="outline" className="w-full h-auto py-6 flex flex-col items-center">
+                <BookOpen className="h-6 w-6 mb-2 text-emerald-500" />
+                <span>Manage Books</span>
+              </Button>
+            </Link>
+            <Link href="/admin/podcasts">
+              <Button variant="outline" className="w-full h-auto py-6 flex flex-col items-center">
+                <Headphones className="h-6 w-6 mb-2 text-[#219ebc]" />
+                <span>Manage Podcasts</span>
               </Button>
             </Link>
             <Link href="/admin/certificates">
               <Button variant="outline" className="w-full h-auto py-6 flex flex-col items-center">
-                <Award className="h-6 w-6 mb-2" />
+                <Award className="h-6 w-6 mb-2 text-purple-500" />
                 <span>Manage Certificates</span>
               </Button>
             </Link>
             <Link href="/admin/contacts">
               <Button variant="outline" className="w-full h-auto py-6 flex flex-col items-center">
-                <Mail className="h-6 w-6 mb-2" />
+                <Mail className="h-6 w-6 mb-2 text-rose-500" />
                 <span>Manage Contacts</span>
               </Button>
             </Link>

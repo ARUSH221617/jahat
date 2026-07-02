@@ -23,18 +23,43 @@ export const loginSchema = z.object({
 
 // Course Schema
 export const courseSchema = z.object({
-  title: z.string().min(1),
-  description: z.string().min(1),
-  category: z.string().default('Unknown'), // Added default
-  level: z.string().default('test'), // Added default
-  duration: z.string().min(1),
-  thumbnail: z.string().optional().or(z.literal("")), // Relaxed url() validation
+  title: z.string().min(1, "Title is required"),
+  description: z.string().min(1, "Description is required"),
+  categoryId: z.string().min(1, "Category is required"),
+  levelId: z.string().min(1, "Level is required"),
+  duration: z.string().min(1, "Duration is required"),
+  thumbnail: z.string().optional().or(z.literal("")),
   price: z.coerce.number().min(0).default(0),
-  instructorId: z.string().min(1),
+  instructorId: z.string().min(1, "Instructor is required"),
 });
 
 export const courseUpdateSchema = courseSchema.partial().extend({
   id: z.string(),
+});
+
+// Product Schema
+export const productSchema = z.object({
+  title: z.string().min(1, "Title is required"),
+  description: z.string().min(1, "Description is required"),
+  price: z.coerce.number().min(0).default(0),
+  thumbnail: z.string().optional().or(z.literal("")),
+  type: z.enum(["COURSE", "BOOK", "PODCAST", "BUNDLE"]).default("BOOK"),
+  categoryIds: z.array(z.string()).default([]),
+  tags: z.string().optional(),
+  // Subtype specific fields
+  courseId: z.string().optional().nullable(),
+  author: z.string().optional().nullable(),
+  pages: z.coerce.number().optional().nullable(),
+  host: z.string().optional().nullable(),
+  episodes: z.coerce.number().optional().nullable(),
+  // Bundle items
+  courseIds: z.array(z.string()).optional(),
+  bookIds: z.array(z.string()).optional(),
+  podcastIds: z.array(z.string()).optional(),
+});
+
+export const productUpdateSchema = productSchema.partial().extend({
+  id: z.string().optional(),
 });
 
 // Certificate Schema
@@ -68,4 +93,36 @@ export const contactSchema = z.object({
   phone: z.string().optional(),
   message: z.string().min(1),
   subject: z.string().optional(),
+});
+
+// Book Schema
+export const bookSchema = z.object({
+  title: z.string().min(1, "Title is required"),
+  description: z.string().min(1, "Description is required"),
+  categoryId: z.string().min(1, "Category is required"),
+  author: z.string().optional().or(z.literal("")),
+  pages: z.coerce.number().min(0).default(0),
+  pdfUrl: z.string().optional().or(z.literal("")),
+  thumbnail: z.string().optional().or(z.literal("")),
+  price: z.coerce.number().min(0).default(0),
+});
+
+export const bookUpdateSchema = bookSchema.partial().extend({
+  id: z.string(),
+});
+
+// Podcast Schema
+export const podcastSchema = z.object({
+  title: z.string().min(1, "Title is required"),
+  description: z.string().min(1, "Description is required"),
+  categoryId: z.string().min(1, "Category is required"),
+  host: z.string().optional().or(z.literal("")),
+  episodes: z.coerce.number().min(0).default(0),
+  audioUrl: z.string().optional().or(z.literal("")),
+  thumbnail: z.string().optional().or(z.literal("")),
+  price: z.coerce.number().min(0).default(0),
+});
+
+export const podcastUpdateSchema = podcastSchema.partial().extend({
+  id: z.string(),
 });

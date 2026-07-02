@@ -17,7 +17,9 @@ import {
   Image,
   ChevronLeft,
   ChevronRight,
-  BookOpen
+  BookOpen,
+  ShoppingBag,
+  Headphones
 } from "lucide-react";
 import {
   Tooltip,
@@ -53,6 +55,24 @@ export function Sidebar({ className, isCollapsed = false, toggleCollapse }: Side
       active: pathname.startsWith("/admin/courses"),
     },
     {
+      label: "Books",
+      icon: BookOpen,
+      href: "/admin/books",
+      active: pathname.startsWith("/admin/books"),
+    },
+    {
+      label: "Podcasts",
+      icon: Headphones,
+      href: "/admin/podcasts",
+      active: pathname.startsWith("/admin/podcasts"),
+    },
+    {
+      label: "Products",
+      icon: ShoppingBag,
+      href: "/admin/products",
+      active: pathname.startsWith("/admin/products"),
+    },
+    {
       label: "Blog",
       icon: BookOpen,
       href: "/admin/blog",
@@ -76,6 +96,12 @@ export function Sidebar({ className, isCollapsed = false, toggleCollapse }: Side
       icon: Image,
       href: "/admin/media",
       active: pathname.startsWith("/admin/media"),
+    },
+    {
+      label: "Settings",
+      icon: Settings,
+      href: "/admin/settings",
+      active: pathname.startsWith("/admin/settings"),
     },
     {
       label: "AI Agent",

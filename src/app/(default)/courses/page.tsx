@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
-import CoursesList from "@/components/courses/courses-list";
 import { Metadata } from "next";
+import CoursesListNew from "@/components/courses/courses-list";
 
 export const dynamic = "force-dynamic";
 
@@ -16,69 +16,64 @@ export const metadata: Metadata = {
 };
 
 export default async function CoursesPage() {
-  const courses = await db.course.findMany({
-    orderBy: { createdAt: 'desc' },
+  const rawCourses = await db.course.findMany({
+    orderBy: { product: { createdAt: "desc" } },
     include: {
-      instructor: {
-        select: { name: true }
-      }
+      product: { include: { categories: true } },
+      instructor: { select: { name: true } },
+      level: true,
     }
   });
 
-  // Deterministic enrichment based on ID to ensure consistency for SEO
-  const enrichedCourses = courses.map((course) => {
-    // Simple hash function for pseudo-randomness based on ID
-    const hash = course.id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-    const rating = 4.5 + (hash % 6) / 10; // 4.5 to 5.0
-    const students = 100 + (hash % 301); // 100 to 400
-    // Use stored price or generate a consistent one
-    const price = course.price || `$${199 + (hash % 401)}`;
+  const currencySetting = await db.setting.findUnique({ where: { key: "currency" } });
+  const currency = currencySetting?.value || "IRR";
 
+  const enrichedCourses = rawCourses.map((c) => {
+    const hash = c.id.split("").reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const rating = 4.5 + (hash % 6) / 10;
+    const students = 100 + (hash % 301);
     return {
-      ...course,
+      id: c.id,
+      title: c.product.title,
+      description: c.product.description,
+      thumbnail: c.product.thumbnail,
+      duration: c.duration,
+      instructor: c.instructor?.name || "مدرس جهت",
+      category: c.product.categories[0]?.name || "ریاضی",
+      level: c.level.name,
       rating,
       students,
-      price
+      price: c.product.price,
+      currency,
     };
   });
 
-  // Add Schema.org structured data for Courses
+  // Schema.org structured data
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "itemListElement": enrichedCourses.map((course, index) => ({
+    itemListElement: enrichedCourses.map((course, index) => ({
       "@type": "ListItem",
-      "position": index + 1,
-      "item": {
+      position: index + 1,
+      item: {
         "@type": "Course",
-        "name": course.title,
-        "description": course.description,
-        "provider": {
-          "@type": "Organization",
-          "name": "Jahat",
-          "sameAs": "https://jahatintl.com"
-        },
-        "hasCourseInstance": {
-          "@type": "CourseInstance",
-          "courseMode": "Online",
-          "courseWorkload": course.duration
-        },
-        "offers": {
+        name: course.title,
+        description: course.description,
+        provider: { "@type": "Organization", name: "Jahat", sameAs: "https://jahatintl.com" },
+        hasCourseInstance: { "@type": "CourseInstance", courseMode: "Online", courseWorkload: course.duration },
+        offers: {
           "@type": "Offer",
-          "price": course.price.replace(/[^0-9.]/g, ''),
-          "priceCurrency": "USD"
-        }
-      }
-    }))
+          price: (currency === "IRT" ? course.price / 10 : course.price).toString(),
+          priceCurrency: currency,
+        },
+      },
+    })),
   };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <CoursesList initialCourses={enrichedCourses} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <CoursesListNew initialCourses={enrichedCourses} totalCourses={enrichedCourses.length} />
     </>
   );
 }

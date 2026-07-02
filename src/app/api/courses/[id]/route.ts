@@ -13,11 +13,17 @@ export async function GET(
         id: id,
       },
       include: {
+        product: {
+          include: {
+            categories: true,
+          }
+        },
         instructor: {
           select: {
             name: true,
           }
-        }
+        },
+        level: true,
       }
     });
 
@@ -28,7 +34,27 @@ export async function GET(
       );
     }
 
-    return NextResponse.json(course);
+    const currencySetting = await db.setting.findUnique({
+      where: { key: "currency" }
+    });
+    const currency = currencySetting?.value || "IRR";
+
+    const mappedCourse = {
+      id: course.id,
+      title: course.product.title,
+      description: course.product.description,
+      price: course.product.price,
+      thumbnail: course.product.thumbnail,
+      duration: course.duration,
+      instructor: course.instructor,
+      category: course.product.categories[0]?.name || "Unknown",
+      level: course.level.name,
+      currency,
+      createdAt: course.product.createdAt,
+      updatedAt: course.product.updatedAt,
+    };
+
+    return NextResponse.json(mappedCourse);
   } catch (error) {
     console.error('Error fetching course:', error);
     return NextResponse.json(
